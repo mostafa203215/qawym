@@ -75,7 +75,7 @@ body {
   transition: color 0.3s;
 }
 .nav-center a:hover {
-  color: #148cad;
+  color: #00c8ff;
 }
 .start-container {
   display: flex;

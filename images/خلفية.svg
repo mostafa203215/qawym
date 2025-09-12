@@ -1,0 +1,628 @@
+<svg width="18412" height="14321" viewBox="0 0 18412 14321" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<path d="M3.01562 9.99987C3.01562 4.47702 7.49278 0 13.0156 0H18412V12238.2C18412 12313.8 18350.7 12375.2 18275 12375.2H3.01562V9.99987Z" fill="#1A1A1A"/>
+<path d="M3.01562 9.99987C3.01562 4.47702 7.49278 0 13.0156 0H18412V12238.2C18412 12313.8 18350.7 12375.2 18275 12375.2H3.01562V9.99987Z" fill="url(#pattern0_292_8)" fill-opacity="0.05"/>
+<rect x="0.8125" y="12375.2" width="18409" height="518.842" fill="#1A1A1A"/>
+<rect x="0.8125" y="12375.2" width="18409" height="518.842" fill="url(#pattern1_292_8)" fill-opacity="0.02"/>
+<rect x="3.01562" y="12942.4" width="18409" height="579.019" fill="#1A1A1A"/>
+<rect x="3.01562" y="12942.4" width="18409" height="579.019" fill="url(#pattern2_292_8)" fill-opacity="0.02"/>
+<path d="M3.01562 13531.4C3.01562 13525.9 7.49278 13521.4 13.0156 13521.4H18412V14061.1C18412 14204.4 18295.8 14320.6 18152.5 14320.6H262.516C119.198 14320.6 3.01562 14204.4 3.01562 14061.1V13531.4Z" fill="#1A1A1A"/>
+<path d="M3.01562 13531.4C3.01562 13525.9 7.49278 13521.4 13.0156 13521.4H18412V14061.1C18412 14204.4 18295.8 14320.6 18152.5 14320.6H262.516C119.198 14320.6 3.01562 14204.4 3.01562 14061.1V13531.4Z" fill="url(#pattern3_292_8)" fill-opacity="0.01"/>
+<defs>
+<pattern id="pattern0_292_8" patternUnits="userSpaceOnUse" patternTransform="matrix(43156.7 0 0 511.5 3.01562 0)" preserveAspectRatio="none" viewBox="0 0 69607.5 825" width="1" height="1">
+<g id="pattern0_292_8_inner">
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 2214 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 0 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 738 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 1476 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 347 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 1085 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 1823 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 2561 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 3299 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 4036 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 4774 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 5512 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 6250 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 6988 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 7726 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 8463 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 9201 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 9939 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 10677 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 11415 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 12153 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 12891 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 13628 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 14366 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 15104 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 15842 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 16580 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 17318 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 18056 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 18793 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 19531 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 20269 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 21007 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 21745 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 22483 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 23221 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 23958 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 24696 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 25434 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 26172 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 26910 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 27648 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 28385 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 29123 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 29861 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 30599 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 31337 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 32075 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 32813 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 33550 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 34288 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 35026 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 35764 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 36502 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 37240 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 37978 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 38715 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 39453 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 40191 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 40929 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 41667 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 42405 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 43143 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 43880 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 44618 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 45356 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 46094 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 46832 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 47570 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 48307 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 49045 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 49783 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 50521 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 51259 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 51997 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 52735 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 53472 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 54210 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 54948 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 2951 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 3689 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 4427 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 5165 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 5903 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 6641 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 7379 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 8116 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 8854 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 9592 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 10330 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 11068 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 11806 660)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 12543 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 13281 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 14019 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 14757 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 15495 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 16233 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 16971 660)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 17708 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 18446 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 19184 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 19922 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 20660 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 21398 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 22136 660)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 22873 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 23611 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 24349 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 25087 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 25825 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 26563 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 27301 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 28038 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 28776 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 29514 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 30252 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 30990 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 31728 660)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 32465 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 33203 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 33941 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 34679 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 35417 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 36155 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 36893 660)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 37630 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 38368 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 39106 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 39844 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 40582 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 41320 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 42058 660)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 42795 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 43533 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 44271 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 45009 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 45747 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 46485 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 47223 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 47960 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 48698 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 49436 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 50174 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 50912 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 51650 660)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 52387 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 53125 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 53863 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 54601 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 55339 660)" fill="white"/>
+</g>
+</pattern><pattern id="pattern1_292_8" patternUnits="userSpaceOnUse" patternTransform="matrix(42265.7 0 0 500.94 0.8125 12375.2)" preserveAspectRatio="none" viewBox="0 0 61254.6 726" width="1" height="1">
+<g id="pattern1_292_8_inner">
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 2214 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 0 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 738 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 1476 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 347 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 1085 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 1823 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 2561 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 3299 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 4036 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 4774 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 5512 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 6250 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 6988 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 7726 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 8463 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 9201 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 9939 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 10677 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 11415 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 12153 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 12891 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 13628 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 14366 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 15104 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 15842 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 16580 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 17318 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 18056 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 18793 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 19531 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 20269 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 21007 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 21745 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 22483 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 23221 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 23958 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 24696 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 25434 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 26172 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 26910 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 27648 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 28385 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 29123 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 29861 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 30599 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 31337 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 32075 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 32813 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 33550 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 34288 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 35026 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 35764 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 36502 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 37240 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 37978 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 38715 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 39453 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 40191 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 40929 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 41667 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 42405 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 43143 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 43880 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 44618 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 45356 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 46094 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 46832 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 47570 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 48307 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 49045 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 49783 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 50521 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 51259 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 51997 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 52735 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 53472 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 54210 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 54948 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 2951 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 3689 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 4427 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 5165 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 5903 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 6641 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 7379 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 8116 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 8854 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 9592 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 10330 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 11068 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 11806 660)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 12543 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 13281 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 14019 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 14757 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 15495 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 16233 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 16971 660)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 17708 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 18446 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 19184 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 19922 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 20660 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 21398 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 22136 660)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 22873 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 23611 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 24349 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 25087 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 25825 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 26563 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 27301 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 28038 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 28776 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 29514 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 30252 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 30990 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 31728 660)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 32465 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 33203 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 33941 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 34679 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 35417 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 36155 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 36893 660)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 37630 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 38368 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 39106 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 39844 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 40582 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 41320 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 42058 660)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 42795 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 43533 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 44271 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 45009 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 45747 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 46485 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 47223 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 47960 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 48698 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 49436 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 50174 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 50912 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 51650 660)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 52387 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 53125 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 53863 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 54601 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 55339 660)" fill="white"/>
+</g>
+</pattern><pattern id="pattern2_292_8" patternUnits="userSpaceOnUse" patternTransform="matrix(42878.2 0 0 508.2 3.01562 12942.4)" preserveAspectRatio="none" viewBox="0 0 61254.6 726" width="1" height="1">
+<g id="pattern2_292_8_inner">
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 2214 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 0 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 738 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 1476 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 347 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 1085 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 1823 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 2561 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 3299 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 4036 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 4774 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 5512 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 6250 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 6988 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 7726 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 8463 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 9201 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 9939 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 10677 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 11415 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 12153 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 12891 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 13628 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 14366 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 15104 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 15842 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 16580 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 17318 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 18056 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 18793 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 19531 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 20269 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 21007 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 21745 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 22483 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 23221 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 23958 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 24696 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 25434 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 26172 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 26910 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 27648 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 28385 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 29123 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 29861 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 30599 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 31337 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 32075 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 32813 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 33550 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 34288 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 35026 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 35764 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 36502 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 37240 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 37978 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 38715 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 39453 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 40191 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 40929 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 41667 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 42405 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 43143 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 43880 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 44618 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 45356 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 46094 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 46832 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 47570 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 48307 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 49045 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 49783 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 50521 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 51259 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 51997 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 52735 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 53472 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 54210 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 54948 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 2951 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 3689 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 4427 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 5165 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 5903 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 6641 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 7379 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 8116 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 8854 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 9592 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 10330 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 11068 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 11806 660)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 12543 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 13281 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 14019 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 14757 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 15495 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 16233 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 16971 660)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 17708 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 18446 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 19184 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 19922 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 20660 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 21398 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 22136 660)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 22873 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 23611 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 24349 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 25087 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 25825 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 26563 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 27301 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 28038 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 28776 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 29514 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 30252 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 30990 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 31728 660)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 32465 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 33203 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 33941 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 34679 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 35417 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 36155 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 36893 660)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 37630 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 38368 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 39106 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 39844 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 40582 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 41320 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 42058 660)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 42795 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 43533 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 44271 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 45009 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 45747 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 46485 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 47223 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 47960 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 48698 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 49436 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 50174 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 50912 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 51650 660)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 52387 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 53125 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 53863 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 54601 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 55339 660)" fill="white"/>
+</g>
+</pattern><pattern id="pattern3_292_8" patternUnits="userSpaceOnUse" patternTransform="matrix(42878.2 0 0 508.2 3.01562 13521.4)" preserveAspectRatio="none" viewBox="0 0 61254.6 726" width="1" height="1">
+<g id="pattern3_292_8_inner">
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 2214 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 0 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 738 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 1476 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 347 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 1085 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 1823 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 2561 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 3299 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 4036 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 4774 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 5512 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 6250 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 6988 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 7726 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 8463 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 9201 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 9939 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 10677 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 11415 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 12153 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 12891 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 13628 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 14366 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 15104 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 15842 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 16580 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 17318 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 18056 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 18793 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 19531 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 20269 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 21007 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 21745 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 22483 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 23221 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 23958 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 24696 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 25434 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 26172 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 26910 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 27648 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 28385 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 29123 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 29861 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 30599 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 31337 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 32075 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 32813 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 33550 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 34288 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 35026 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 35764 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 36502 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 37240 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 37978 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 38715 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 39453 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 40191 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 40929 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 41667 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 42405 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 43143 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 43880 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 44618 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 45356 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 46094 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 46832 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 47570 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 48307 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 49045 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 49783 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 50521 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 51259 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 51997 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 52735 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 53472 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 54210 347)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 54948 347)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 2951 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 3689 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 4427 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 5165 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 5903 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 6641 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 7379 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 8116 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 8854 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 9592 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 10330 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 11068 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 11806 660)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 12543 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 13281 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 14019 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 14757 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 15495 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 16233 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 16971 660)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 17708 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 18446 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 19184 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 19922 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 20660 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 21398 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 22136 660)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 22873 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 23611 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 24349 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 25087 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 25825 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 26563 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 27301 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 28038 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 28776 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 29514 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 30252 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 30990 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 31728 660)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 32465 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 33203 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 33941 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 34679 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 35417 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 36155 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 36893 660)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 37630 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 38368 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 39106 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 39844 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 40582 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 41320 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 42058 660)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 42795 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 43533 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 44271 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 45009 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 45747 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 46485 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 47223 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 47960 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 48698 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 49436 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 50174 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 50912 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 51650 660)" fill="white"/>
+<ellipse cx="174" cy="173.5" rx="174" ry="173.5" transform="matrix(1 0 0 -1 52387 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 53125 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 53863 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 54601 660)" fill="white"/>
+<circle cx="173.5" cy="173.5" r="173.5" transform="matrix(1 0 0 -1 55339 660)" fill="white"/>
+</g>
+</pattern></defs>
+</svg>

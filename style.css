@@ -1,0 +1,131 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #1a1a1a;
+  color: #fff;
+  min-block-size: 100vh;
+}
+
+.container {
+  inline-size: 100%;
+  max-inline-size: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.header {
+  inline-size: 100%;
+  padding: 15px 0;
+  position: relative;
+  z-index: 10;
+
+  background-image: url("./images/خلفية.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 85%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: cover;
+
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 85%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  mask-repeat: no-repeat;
+  mask-size: cover;
+}
+
+.header-bar {
+  box-shadow: 0 -3px 15px rgb(249 238 238 / 40%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgb(129 127 127 / 20%);
+  border-radius: 40px;
+  padding: 12px 24px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-svg-container {
+  inline-size: 42px;
+  block-size: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-svg {
+  inline-size: 90%;
+  block-size: 69px;
+  margin-inline-start: 3px;
+  margin-block-end: 6px;
+}
+
+.qawem {
+  font-size: 35px;
+  font-weight: bold;
+  color: #fff;
+  font-family: "Reem Kufi", sans-serif;
+}
+
+.nav-center {
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+  flex: 1;
+}
+
+.nav-center a {
+  font-family: "Actor", sans-serif;
+  text-decoration: none;
+  color: #e5e5e5b5;
+  font-size: 22px;
+  transition: color 0.3s;
+}
+
+.nav-center a:hover {
+  color: #fff;
+}
+
+.start-container {
+  display: flex;
+  align-items: center;
+}
+
+.start-btn {
+  font-family: "Actor", sans-serif;
+  background: linear-gradient(to bottom, #d85c1a, #93380f);
+  color: #fff !important;
+  padding: 12px 36px;
+  text-decoration: none;
+  border-radius: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  border: 1px solid #000;
+  box-shadow: inset 0 8px 4px rgb(255 255 255 / 40%),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.6);
+  transition: 0.3s;
+}
+
+.start-btn:hover {
+  background: linear-gradient(to bottom, #e0671f, #a33c14, #ff6200);
+  box-shadow: inset 0 -5px 2px rgb(255 255 255 / 30%),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.6);
+}

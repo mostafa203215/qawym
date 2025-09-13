@@ -1,0 +1,103 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --orange: #d16400;
+  --orange-rgb: 209, 100, 0;
+  --blue: #007a8a;
+  --blue-rgb: 0, 122, 138;
+  --light-gray: #d9d9d9;
+  --dark-bg: #1a1a1a;
+  --play-button-orange: #f26513;
+}
+
+.video-player-container {
+  inline-size: 90%;
+  max-inline-size: 800px;
+  aspect-ratio: 16 / 9;
+  margin: 2rem auto;
+}
+
+.video-frame {
+  position: static;
+  inline-size: 100%;
+  block-size: 100%;
+  padding: 12px;
+  border-radius: 30px;
+  background: linear-gradient(110deg, var(--orange), var(--blue));
+  box-shadow: inset 2px 2px 5px rgb(255 255 255 / 92%),
+    inset -5px -5px 10px rgb(255 255 255 / 70%), 0 0 25px -8px rgb(18 138 171),
+    0 0 25px -8px rgb(184 247 255 / 66%), 0 4px 8px rgb(241 148 89 / 82%),
+    0 15px 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-content-area {
+  inline-size: 100%;
+  block-size: 100%;
+  background-color: var(--light-gray);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: static;
+}
+
+.play-button {
+  inline-size: 80px;
+  block-size: 80px;
+  background-color: var(--play-button-orange);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s ease-out, filter 0.2s ease-out;
+}
+
+.play-button:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+.play-button::after {
+  content: "";
+  inline-size: 0;
+  block-size: 0;
+  border-inline-start: 20px solid white;
+  border-block-start: 15px solid transparent;
+  border-block-end: 15px solid transparent;
+  margin-inline-start: 5px;
+}
+
+.features-video-container {
+  inline-size: 100%; 
+  max-inline-size: 1200px; 
+  aspect-ratio: 16 / 9;
+  margin: 3rem auto;
+  text-align: center;
+}
+.features-video-container .video-frame {
+  padding: 2.5%;
+  border-radius: 35px; 
+}
+
+.feature-video-text {
+  margin-block-start: 1rem;
+  font-size: 1.2rem;
+  color: #fff;
+}
+@media (max-width: 768px) {
+  .features-video-container .video-frame {
+    padding: 15px;
+  }
+}

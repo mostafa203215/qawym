@@ -1,83 +1,112 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Qawym | قويم</title>
     <link rel="icon" type="image/svg+xml" href="./images/الشعار.svg" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Actor&family=Reem+Kufi&display=swap" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Actor&family=Reem+Kufi&family=Tajawal:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="video-player.css" />
     <link rel="stylesheet" href="style.css" />
-</head>
+  </head>
 
-<body>
-    <!--Header-->
+  <body>
     <header class="header">
-        <div class="container">
-            <div class="header-bar">
-                <div class="logo-container">
-                    <img src="./images/الشعار.svg" alt="قويم شعار" class="logo-svg" />
-                    <div class="logo-text">
-                        <span class="qawem">قويم</span>
-                    </div>
-                </div>
-
-                <nav class="nav-center">
-                    <a href="#philosophy" class="nav-btn">فلسفتنا</a>
-                    <a href="#features" class="nav-btn">المميزات</a>
-                    <a href="#usage" class="nav-btn">حالات الاستخدام</a>
-                </nav>
-
-                <div class="start-container">
-                    <a href="#" class="start-btn">ابدأ الآن</a>
-                </div>
+      <div class="container">
+        <div class="header-bar">
+          <div class="logo-container">
+            <img src="./images/الشعار.svg" alt="قويم شعار" class="logo-svg" />
+            <div class="logo-text">
+              <span class="qawem">قويم</span>
             </div>
+          </div>
+
+          <button class="menu-toggle" id="menu-toggle" aria-label="القائمة">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+
+          <nav class="nav-center" id="nav-menu">
+            <a href="#philosophy" class="nav-btn">فلسفتنا</a>
+            <a href="#features" class="nav-btn">المميزات</a>
+            <a href="#usage" class="nav-btn">حالات الاستخدام</a>
+            <div class="start-container">
+              <a href="#" class="start-btn">ابدأ الآن</a>
+            </div>
+          </nav>
         </div>
+      </div>
+
+      <div class="container">
+        <section class="hero">
+          <h2 class="section-title">بوصلتك للأخلاق رقميًا</h2>
+          <p class="section-sub">
+            نظام متكامل لدعم الوعي الأخلاقي والسلوك الإيجابي في حياتك الرقمية
+          </p>
+          <div class="video-player-container">
+            <div class="video-frame">
+              <div class="video-content-area">
+                <button class="play-button" aria-label="تشغيل الفيديو"></button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </header>
 
-    <!--Hero-->
-    <section class="hero">
-        <h2 class="section-title">بوصلتك للأخلاق الرقمية</h2>
-        <p class="section-sub">نظام متكامل لدعم الوعي الأخلاقي والسلوك الرقمي في حياتك اليومية</p>
-        <div class="video-box">
-            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+    <div class="container">
+      <section class="philosophy" id="philosophy">
+        <h2 class="section-title">
+          فلسفتنا: حيث تلتقي <span class="highlight">التقنية </span>
+          <span class="highlight2">بالقيم</span>
+        </h2>
+        <div class="bg-img">
+          <p class="section-text">
+            في عالم رقمي يتسارع بوتيرة غير مسبوقة، يواجه شبابنا تحديات من التنمر
+            الرقمي إلى ضغوط وسائل التواصل. نحن نؤمن أن التطور التكنولوجي يجب أن
+            يسير جنبًا إلى جنب مع الوعي الأخلاقي والثقافة الإنسانية، وأن كل شاب
+            يستحق بوصلة ترشده نحو الاستقامة والالتزام.
+          </p>
+          <p class="section-text">
+            من هنا تأتي فلسفتنا في قويم: نقدم لك مصدر أدوات لبناء ثقافة الوعي
+            الذاتي، مصممة لتدعيم رحلتك الرقمية. مصمم بمحتوى تفاعلي، على التنقل
+            في هذا العالم المعقد، وبناء سلوكيات إيجابية، وتحقيق التوازن في
+            حياتك. نحن هنا لتثبت أن التكنولوجيا يمكن أن تكون أداة قوية للإرشاد
+            والتغيير نحو الأفضل.
+          </p>
         </div>
-    </section>
+      </section>
 
-    <!--فلسفتنا -->
-    <section class="philosophy" id="philosophy">
-        <h2 class="section-title">فلسفتنا: حيث تلتقي <span class="highlight">التقنية بالقيم</span></h2>
-        <p class="section-text">
-            في عالم رقمي يتسارع بوتيرة غير مسبوقة، يواجه شبابنا تحديات من التنمر الرقمي إلى ضغوط وسائل التواصل. نحن نؤمن أن التطور التكنولوجي يجب أن يسير جنبًا إلى جنب مع الوعي الأخلاقي والثقافة الإنسانية، وأن كل شاب يستحق بوصلة ترشده نحو الاستقامة والالتزام.
-        </p>
-        <p class="section-text">
-            من هنا تأتي فلسفتنا في قويم: نقدم لك مصدر أدوات لبناء ثقافة الوعي الذاتي، مصممة لتدعيم رحلتك الرقمية. مصمم بمحتوى تفاعلي، على التنقل في هذا العالم المعقد، وبناء سلوكيات إيجابية، وتحقيق التوازن في حياتك. نحن هنا لتثبت أن التكنولوجيا يمكن أن تكون أداة قوية
-            للإرشاد والتغيير نحو الأفضل.
-        </p>
-    </section>
-
-    <!--المميزات-->
-    <section class="features" id="features">
+      <section class="features" id="features">
         <h2 class="section-title">ميزات مصممة لرحلتك الرقمية</h2>
-        <div class="video-player-container" role="application" aria-label="Video Player">
-            <div class="video-frame">
-                <div class="video-content-area" aria-label="Video content placeholder">
-                    <button class="play-button" aria-label="Play Video">
-                </button>
-                </div>
+
+        <div class="features-video-container">
+          <div class="video-frame">
+            <div class="video-content-area" id="features-video">
+              <button class="play-button" aria-label="تشغيل الفيديو"></button>
             </div>
+          </div>
         </div>
 
         <div class="feature-nav">
-            <button class="nav-btn-circle"><i class="fa-solid fa-arrow-right"></i></button>
-            <button class="nav-btn-main">مساعد ذكي</button>
-            <button class="nav-btn-circle"><i class="fa-solid fa-arrow-left"></i></button>
+          <button class="nav-btn-circle" id="prev-video">
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+          <button class="nav-btn-main" id="main-feature-btn">مساعد ذكي</button>
+          <button class="nav-btn-circle" id="next-video">
+            <i class="fa-solid fa-arrow-left"></i>
+          </button>
         </div>
-    </section>
-
+      </section>
+    </div>
 
     <script src="script.js"></script>
-</body>
-
+    <script src="video-player.js"></script>
+  </body>
 </html>

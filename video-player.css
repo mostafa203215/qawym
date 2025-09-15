@@ -15,7 +15,24 @@
   --dark-bg: #1a1a1a;
   --play-button-orange: #f26513;
 }
+::-webkit-scrollbar {
+  inline-size: 30px;
+}
 
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: black;
+  border-radius: 15px;
+  border: 5px solid #1a1a1a;
+}
+
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #138bac #00e5ff11;
+}
 .video-player-container {
   inline-size: 90%;
   max-inline-size: 800px;
@@ -80,15 +97,15 @@
 }
 
 .features-video-container {
-  inline-size: 100%; 
-  max-inline-size: 1200px; 
+  inline-size: 100%;
+  max-inline-size: 1200px;
   aspect-ratio: 16 / 9;
   margin: 3rem auto;
   text-align: center;
 }
 .features-video-container .video-frame {
   padding: 2.5%;
-  border-radius: 35px; 
+  border-radius: 35px;
 }
 
 .feature-video-text {

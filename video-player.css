@@ -90,10 +90,10 @@
   content: "";
   inline-size: 0;
   block-size: 0;
-  border-inline-start: 20px solid white;
+  border-inline-end: 20px solid white;
   border-block-start: 15px solid transparent;
   border-block-end: 15px solid transparent;
-  margin-inline-start: 5px;
+  margin-inline-end: 5px;
 }
 
 .features-video-container {

@@ -18,6 +18,10 @@
   </head>
 
   <body>
+    <div class="preloader">
+      <div class="loader"></div>
+      <p class="loading-text">جارٍ التحميل...</p>
+    </div>
     <header class="header">
       <div class="container">
         <div class="header-bar">
@@ -62,18 +66,18 @@
 
     <div class="container">
       <section class="philosophy" id="philosophy">
-        <h2 class="section-title">
+        <h2 class="section-title reveal">
           فلسفتنا: حيث تلتقي <span class="highlight">التقنية </span>
           <span class="highlight2">بالقيم</span>
         </h2>
         <div class="bg-img">
-          <p class="section-text">
+          <p class="section-text reveal">
             في عالم رقمي يتسارع بوتيرة غير مسبوقة، يواجه شبابنا تحديات من التنمر
             الرقمي إلى ضغوط وسائل التواصل. نحن نؤمن أن التطور التكنولوجي يجب أن
             يسير جنبًا إلى جنب مع الوعي الأخلاقي والثقافة الإنسانية، وأن كل شاب
             يستحق بوصلة ترشده نحو الاستقامة والالتزام.
           </p>
-          <p class="section-text">
+          <p class="section-text reveal">
             من هنا تأتي فلسفتنا في قويم: نقدم لك مصدر أدوات لبناء ثقافة الوعي
             الذاتي، مصممة لتدعيم رحلتك الرقمية. مصمم بمحتوى تفاعلي، على التنقل
             في هذا العالم المعقد، وبناء سلوكيات إيجابية، وتحقيق التوازن في
@@ -84,9 +88,9 @@
       </section>
 
       <section class="features" id="features">
-        <h2 class="section-title">ميزات مصممة لرحلتك الرقمية</h2>
+        <h2 class="section-title reveal">ميزات مصممة لرحلتك الرقمية</h2>
 
-        <div class="features-video-container">
+        <div class="features-video-container reveal">
           <div class="video-frame">
             <div class="video-content-area" id="features-video">
               <button class="play-button" aria-label="تشغيل الفيديو"></button>
@@ -104,7 +108,61 @@
           </button>
         </div>
       </section>
+      <button
+        id="scroll-top-btn"
+        class="scroll-top-btn"
+        aria-label="الذهاب للأعلى"
+      >
+        <i class="fa-solid fa-arrow-up"></i>
+      </button>
     </div>
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h2 class="footer-logo">
+            <img src="./images/الشعار.svg" alt="Logo" />
+            قويم
+          </h2>
+          <p>بوصلتك للأخلاق رقميًا</p>
+        </div>
+
+        <div class="footer-col">
+          <h3>روابط سريعة</h3>
+          <div class="footer-links-grid">
+            <ul>
+              <li><a href="#features">المميزات</a></li>
+              <li><a href="./Who_we_are.html">من نحن</a></li>
+            </ul>
+            <ul>
+              <li><a href="./Coming-soon.html">الخدمات</a></li>
+              <li><a href="./Coming-soon.html">تواصل معنا</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3>تابعنا</h3>
+          <div class="social-links">
+            <a href="./Coming-soon.html"
+              ><i class="fa-brands fa-facebook"></i
+            ></a>
+            <a href="./Coming-soon.html"
+              ><i class="fa-brands fa-twitter"></i
+            ></a>
+            <a href="./Coming-soon.html"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+            <a href="./Coming-soon.html"
+              ><i class="fa-brands fa-youtube"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 جميع الحقوق محفوظة | بواسطة <span>Qawym | قويم</span></p>
+      </div>
+    </footer>
 
     <script src="script.js"></script>
     <script src="video-player.js"></script>

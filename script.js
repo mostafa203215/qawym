@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (targetEl) {
             e.preventDefault();
             const targetY =
-              targetEl.getBoundingClientRect().top + window.scrollY - 20; 
+              targetEl.getBoundingClientRect().top + window.scrollY - 20;
             smoothScrollTo(targetY, 900);
           }
         }
@@ -192,5 +192,12 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("load", () => {
     const preloader = document.querySelector(".preloader");
     preloader.classList.add("hidden");
+  });
+  window.addEventListener("load", () => {
+    const preloader = document.querySelector(".preloader");
+    preloader.classList.add("hidden");
+
+    // إزالة كلاس hide-scroll بعد انتهاء التحميل
+    document.body.classList.remove("hide-scroll");
   });
 });

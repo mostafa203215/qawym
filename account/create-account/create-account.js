@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const uploadBtn = document.getElementById("uploadBtn");
   const loadingOverlay = document.getElementById("loadingOverlay");
 
-  // تبديل عرض كلمة المرور
   togglePassword.addEventListener("click", function () {
     const type =
       passwordInput.getAttribute("type") === "password" ? "text" : "password";
@@ -37,19 +36,15 @@ document.addEventListener("DOMContentLoaded", function () {
         : '<i class="fas fa-eye-slash"></i>';
   });
 
-  // رفع صورة البروفايل - زر "اختر صورة"
   uploadBtn.addEventListener("click", function () {
     profilePictureInput.click();
   });
 
-  // رفع صورة البروفايل - عند النقر على الصورة نفسها
   profilePreviewContainer.addEventListener("click", function (e) {
-    // منع الحدث من الانتقال إلى العناصر الفرعية
     e.stopPropagation();
     profilePictureInput.click();
   });
 
-  // منع فتح الملف مرتين إذا نقر المستخدم على الصورة داخل الحاوية
   profilePreview.addEventListener("click", function (e) {
     e.stopPropagation();
     profilePictureInput.click();
@@ -63,7 +58,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      // التحقق من نوع الملف
       if (!file.type.startsWith("image/")) {
         alert("يرجى اختيار ملف صورة فقط");
         return;
@@ -74,7 +68,6 @@ document.addEventListener("DOMContentLoaded", function () {
         profilePreview.src = e.target.result;
         localStorage.setItem("tempProfilePicture", e.target.result);
 
-        // إضافة تأثير عند تغيير الصورة
         profilePreviewContainer.style.transform = "scale(1.1)";
         setTimeout(() => {
           profilePreviewContainer.style.transform = "scale(1)";
@@ -84,7 +77,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // إضافة تأثير عند السحب والإفلات (اختياري)
   profilePreviewContainer.addEventListener("dragover", function (e) {
     e.preventDefault();
     this.style.borderColor = "#2ba8d9";
@@ -109,7 +101,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // معالجة إنشاء الحساب
   registerForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -119,7 +110,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const confirmPassword = document.getElementById("confirmPassword").value;
     const agreeTerms = document.getElementById("agreeTerms").checked;
 
-    // التحقق من صحة البيانات
     if (!validateEmail(email)) {
       showError("البريد الإلكتروني غير صحيح");
       return;
@@ -134,14 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
       showError("كلمتا المرور غير متطابقتين");
       return;
     }
-
-    // (تم إزالة التحقق من الشروط لأنها معلمة افتراضياً)
-    // if (!agreeTerms) {
-    //   showError("يجب الموافقة على الشروط والأحكام");
-    //   return;
-    // }
-
-    // التحقق من عدم وجود حساب بنفس البريد الإلكتروني
+ 
     const existingUsers = JSON.parse(
       localStorage.getItem("registeredUsers") || "[]"
     );
@@ -150,23 +133,19 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    // عرض شاشة التحميل
     loadingOverlay.style.display = "flex";
 
-    // محاكاة عملية إنشاء الحساب
     setTimeout(() => {
       createAccount(fullName, email, password);
     }, 2000);
   });
 
-  // وظائف المساعدة
   function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
   }
 
   function showError(message) {
-    // إنشاء نافذة تنبيه مخصصة بدلاً من alert العادي
     const errorDiv = document.createElement("div");
     errorDiv.style.cssText = `
             position: fixed;
@@ -195,14 +174,12 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function createAccount(fullName, email, password) {
-    // إنشاء صورة افتراضية إذا لم يتم رفع صورة
     let profilePicture = localStorage.getItem("tempProfilePicture");
 
     if (!profilePicture) {
       profilePicture = createDefaultAvatar(fullName);
     }
 
-    // حفظ بيانات المستخدم في localStorage
     const userData = {
       fullName: fullName,
       email: email,
@@ -210,48 +187,39 @@ document.addEventListener("DOMContentLoaded", function () {
       createdAt: new Date().toISOString(),
     };
 
-    // حفظ المستخدم الجديد في قائمة المستخدمين المسجلين
     const existingUsers = JSON.parse(
       localStorage.getItem("registeredUsers") || "[]"
     );
     existingUsers.push({ ...userData, password: password });
     localStorage.setItem("registeredUsers", JSON.stringify(existingUsers));
 
-    // حفظ بيانات المستخدم الحالي
     localStorage.setItem("currentUser", JSON.stringify(userData));
     localStorage.setItem("isLoggedIn", "true");
 
-    // مسح الصورة المؤقتة
     localStorage.removeItem("tempProfilePicture");
 
-    // توجيه إلى الصفحة الرئيسية
     window.location.href = "../../qawim_ai/index.html";
   }
 
-  // دالة إنشاء صورة افتراضية
   function createDefaultAvatar(name) {
     const canvas = document.createElement("canvas");
     canvas.width = 200;
     canvas.height = 200;
     const ctx = canvas.getContext("2d");
 
-    // خلفية عشوائية
     const colors = ["#2ba8d9", "#d15425", "#ec6f50", "#2a93b0", "#c15516"];
     const bgColor = colors[Math.floor(Math.random() * colors.length)];
 
-    // رسم خلفية دائرية
     ctx.fillStyle = bgColor;
     ctx.beginPath();
     ctx.arc(100, 100, 90, 0, 2 * Math.PI);
     ctx.fill();
 
-    // إعداد النص
     ctx.fillStyle = "#FFFFFF";
     ctx.font = 'bold 70px "Tajawal", Arial, sans-serif';
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
 
-    // الحصول على الحروف الأولى من الاسم
     const initials = name
       .split(" ")
       .map((word) => word[0])
@@ -259,19 +227,16 @@ document.addEventListener("DOMContentLoaded", function () {
       .toUpperCase()
       .substring(0, 2);
 
-    // رسم الحروف في المركز
     ctx.fillText(initials, 100, 100);
 
     return canvas.toDataURL();
   }
 
-  // تحميل الصورة المؤقتة إذا كانت موجودة
   const tempProfilePicture = localStorage.getItem("tempProfilePicture");
   if (tempProfilePicture) {
     profilePreview.src = tempProfilePicture;
   }
 
-  // إضافة أنيميشن للإشعارات
   const style = document.createElement("style");
   style.textContent = `
         @keyframes slideIn {

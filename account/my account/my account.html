@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>حسابي - AI Assistant</title>
+    <link rel="stylesheet" href="./my account.css" />
+    <link rel="icon" type="image/svg+xml" href="../../images/الشعار.svg" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- لودر التحميل -->
+    <div class="preloader">
+      <div class="loader"></div>
+      <p class="loading-text">جارٍ التحميل...</p>
+    </div>
+
+    <div class="container">
+      <!-- الشريط الجانبي -->
+      <div class="sidebar">
+        <!-- شعار مع الهامبرجر -->
+        <div class="logo-wrapper">
+          <div class="logo">
+            <img src="../../images/الشعار.svg" alt="شعار قويم" />
+          </div>
+          <div class="hamburger">
+            <i class="fa-solid fa-bars"></i>
+          </div>
+        </div>
+
+        <!-- أيقونات وسطية مع النصوص -->
+        <div class="middle-icons">
+          <a href="../../qawim_ai/index.html" class="icon" data-text="الرئيسية">
+            <i class="fa-solid fa-home"></i>
+            <span class="icon-text">الرئيسية</span>
+          </a>
+
+          <button class="icon active" data-text="حسابي">
+            <i class="fa-solid fa-user"></i>
+            <span class="icon-text">حسابي</span>
+          </button>
+        </div>
+
+        <!-- قسم البروفايل الثابت -->
+        <div class="profile-section">
+          <div class="profile">
+            <img
+              src="../../images/default-avatar.jpg"
+              alt="صورة البروفايل"
+              id="sidebarProfile"
+            />
+            <span class="profile-name" id="sidebarName">unknown</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- منطقة المحتوى الرئيسي -->
+      <div class="main-content">
+        <!-- زر هامبرجر للجوال -->
+        <div class="mobile-hamburger">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <div class="content-header">
+          <h1><i class="fas fa-user-circle"></i> إدارة الحساب</h1>
+          <p>يمكنك تعديل بيانات حسابك الشخصي من هنا</p>
+        </div>
+
+        <div class="account-content">
+          <div class="profile-card">
+            <div class="profile-picture-section">
+              <h3><i class="fas fa-camera"></i> صورة البروفايل</h3>
+              <div class="profile-picture-upload">
+                <div class="profile-preview" id="profilePreviewContainer">
+                  <img
+                    id="profilePreview"
+                    src="../../images/default-avatar.jpg"
+                    alt="صورة البروفايل"
+                  />
+                  <div class="upload-overlay">
+                    <i class="fas fa-camera"></i>
+                  </div>
+                </div>
+                <input
+                  type="file"
+                  id="profilePicture"
+                  accept="image/*"
+                  style="display: none"
+                />
+                <button type="button" class="upload-btn" id="uploadBtn">
+                  <i class="fas fa-sync-alt"></i> تغيير الصورة
+                </button>
+              </div>
+            </div>
+
+            <form class="account-form" id="accountForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="fullName"
+                    ><i class="fas fa-user"></i> الاسم الكامل</label
+                  >
+                  <input
+                    type="text"
+                    id="fullName"
+                    name="fullName"
+                    required
+                    placeholder="ادخل اسمك الكامل (45 حرف كحد أقصى)"
+                    maxlength="45"
+                  />
+                  <div class="char-counter">
+                    <span id="charCount">0</span>/45 حرف
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="email"
+                    ><i class="fas fa-envelope"></i> البريد الإلكتروني</label
+                  >
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    placeholder="ادخل بريدك الإلكتروني"
+                    readonly
+                  />
+                  <span class="readonly-note"
+                    >(لا يمكن تعديل البريد الإلكتروني)</span
+                  >
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="currentPassword"
+                    ><i class="fas fa-lock"></i> كلمة المرور الحالية</label
+                  >
+                  <input
+                    type="text"
+                    id="currentPassword"
+                    name="currentPassword"
+                    placeholder="كلمة المرور الحالية (للتعديل فقط)"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="newPassword"
+                    ><i class="fas fa-lock"></i> كلمة المرور الجديدة</label
+                  >
+                  <input
+                    type="password"
+                    id="newPassword"
+                    name="newPassword"
+                    placeholder="كلمة المرور الجديدة (اختياري)"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="confirmNewPassword"
+                    ><i class="fas fa-lock"></i> تأكيد كلمة المرور
+                    الجديدة</label
+                  >
+                  <input
+                    type="password"
+                    id="confirmNewPassword"
+                    name="confirmNewPassword"
+                    placeholder="أعد إدخال كلمة المرور الجديدة"
+                  />
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="save-btn">
+                  <i class="fas fa-save"></i>
+                  حفظ التغييرات
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="danger-actions-card">
+            <h3><i class="fas fa-exclamation-triangle"></i> إجراءات خطيرة</h3>
+            <div class="danger-buttons">
+              <button type="button" class="logout-btn" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i>
+                تسجيل الخروج
+              </button>
+
+              <button type="button" class="delete-btn" id="deleteAccountBtn">
+                <i class="fas fa-trash"></i>
+                حذف الحساب
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- نافذة تأكيد تسجيل الخروج -->
+    <div class="overlay" id="logoutConfirmOverlay" style="display: none">
+      <div class="popup logout-popup">
+        <div class="popup-icon">
+          <i class="fas fa-sign-out-alt"></i>
+        </div>
+        <h3>تسجيل الخروج</h3>
+        <p>هل أنت متأكد أنك تريد تسجيل الخروج من حسابك؟</p>
+        <p style="color: #ec6f50; font-size: 12px; margin-top: 10px">
+          يمكنك تسجيل الدخول مرة أخرى في أي وقت
+        </p>
+        <div class="actions">
+          <button id="confirmLogoutBtn" class="confirm-btn">
+            <i class="fas fa-check"></i> نعم، سجل الخروج
+          </button>
+          <button id="cancelLogoutBtn" class="cancel-btn">
+            <i class="fas fa-times"></i> إلغاء
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- نافذة تأكيد حذف الحساب -->
+    <div class="overlay" id="deleteConfirmOverlay" style="display: none">
+      <div class="popup confirm-popup">
+        <div class="popup-icon">
+          <i class="fa-solid fa-trash-can"></i>
+        </div>
+        <span class="close-modal" id="closeDeleteModal">&times;</span>
+        <h3>تأكيد حذف الحساب</h3>
+        <p>هل أنت متأكد أنك تريد حذف حسابك نهائياً؟</p>
+        <p style="color: #ff6b6b; font-size: 12px">
+          هذا الإجراء لا يمكن التراجع عنه، وسيتم حذف جميع بياناتك ومحادثاتك.
+        </p>
+        <div class="form-group">
+          <label for="confirmPasswordDelete"
+            ><i class="fas fa-lock"></i> أدخل كلمة المرور للتأكيد</label
+          >
+          <input
+            type="password"
+            id="confirmPasswordDelete"
+            name="confirmPasswordDelete"
+            placeholder="أدخل كلمة المرور للتأكيد"
+          />
+        </div>
+        <div class="actions">
+          <button id="confirmDeleteAccountBtn">نعم، احذف الحساب</button>
+          <button id="cancelDeleteAccountBtn">إلغاء</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- طبقة شفافة للجوال -->
+    <div class="sidebar-overlay"></div>
+
+    <script src="./my account.js"></script>
+  </body>
+</html>

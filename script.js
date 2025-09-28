@@ -197,7 +197,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const preloader = document.querySelector(".preloader");
     preloader.classList.add("hidden");
 
-    // إزالة كلاس hide-scroll بعد انتهاء التحميل
     document.body.classList.remove("hide-scroll");
   });
 });

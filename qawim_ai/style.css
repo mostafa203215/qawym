@@ -456,7 +456,6 @@ body.loading {
   border-radius: 10px;
 }
 
-/* أنماط أزرار الرسائل - تحت الرسالة */
 .message {
   position: relative;
   transition: all 0.3s ease;
@@ -501,14 +500,12 @@ body.loading {
   transform: scale(1.1);
 }
 
-/* رسالة المستخدم - أزرار على اليمين تحت الرسالة */
 .message.user .message-actions {
   left: auto;
   right: 0;
   top: 40px;
 }
 
-/* رسالة البوت - زر النسخ فقط على اليمين تحت الرسالة */
 .message.bot .message-actions {
   left: auto;
   right: 0;
@@ -519,7 +516,6 @@ body.loading {
   display: none;
 }
 
-/* تحسينات للرسائل مع الأزرار */
 .message.user,
 .message.bot {
   padding: 15px;
@@ -535,7 +531,6 @@ body.loading {
   padding: 15px;
 }
 
-/* تأثير عند النسخ */
 .message-copied {
   animation: copyFlash 0.5s ease;
 }
@@ -661,6 +656,7 @@ body.loading {
   display: flex;
   justify-content: center;
   gap: 10px;
+  margin-top: 10px;
 }
 .actions button {
   padding: 6px 12px;
@@ -758,6 +754,7 @@ body.loading {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  margin-top: 5px;
 }
 .no-results {
   text-align: center;
@@ -766,7 +763,6 @@ body.loading {
   padding: 20px;
 }
 
-/* نافذة تأكيد الحذف المخصصة */
 .confirm-popup {
   width: 450px !important;
 }
@@ -778,6 +774,116 @@ body.loading {
   margin-bottom: 20px;
   color: #ccc;
   line-height: 1.5;
+}
+
+.search-highlight {
+  background-color: #ec6f50;
+  color: #000;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+.search-result-message {
+  animation: pulse-highlight 2s ease-in-out;
+  border-left: 4px solid #128aab;
+  padding-left: 10px;
+}
+
+.message-highlight {
+  background-color: #128aab;
+  color: #000;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-weight: bold;
+  animation: text-pulse 1.5s ease-in-out 3;
+}
+
+@keyframes pulse-highlight {
+  0% {
+    background-color: rgba(236, 111, 80, 0.3);
+  }
+  50% {
+    background-color: rgba(236, 111, 80, 0.1);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+@keyframes text-pulse {
+  0%,
+  100% {
+    background-color: #128aab;
+  }
+  50% {
+    background-color: #128aab79;
+  }
+}
+
+.result-count {
+  font-size: 12px;
+  color: #ec6f50;
+  margin-right: 5px;
+}
+
+.result-preview {
+  font-size: 12px;
+  color: #aaa;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: 5px;
+}
+
+.message.search-result-message {
+  transition: all 0.3s ease;
+}
+
+.search-navigation {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  background: rgba(42, 168, 217, 0.9);
+  border-radius: 10px;
+  padding: 10px;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+.search-nav-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-nav-info {
+  color: white;
+  font-size: 12px;
+  margin-right: 5px;
+}
+
+.search-nav-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.search-nav-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.search-nav-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 @media (max-width: 768px) {
@@ -852,8 +958,6 @@ body.loading {
   }
 }
 
-/* --------------------- */
-/* إضافة أنماط لزر الهامبرجر للجوال */
 .mobile-hamburger {
   position: absolute;
   top: -35px;
@@ -900,7 +1004,7 @@ body.loading {
   }
   .chat-area {
     width: 100%;
-    padding-top: 70px; /* إضافة مساحة لزر الهامبرجر */
+    padding-top: 70px; 
   }
 
   .hamburger {
@@ -948,7 +1052,6 @@ body.loading {
     margin: 0 5%;
   }
 
-  /* إضافة طبقة شفافة عند فتح السايدبار */
   .sidebar-overlay {
     display: none;
     position: fixed;
@@ -962,5 +1065,106 @@ body.loading {
 
   .sidebar.open + .sidebar-overlay {
     display: block;
+  }
+}
+.confirm-popup {
+  width: 450px !important;
+  max-width: 90vw;
+}
+
+.confirm-popup h3 {
+  color: #ff6b6b;
+  margin-bottom: 20px;
+  word-break: break-word;
+}
+
+.confirm-popup p {
+  margin-bottom: 20px;
+  color: #ccc;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.conversation-name-container {
+  display: inline-block;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: bottom;
+  direction: rtl;
+  background: rgba(255, 107, 107, 0.1);
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin: 0 2px;
+}
+
+@media (max-width: 480px) {
+  .confirm-popup {
+    width: 95vw !important;
+    padding: 15px;
+  }
+
+  .conversation-name-container {
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 360px) {
+  .conversation-name-container {
+    max-width: 150px;
+  }
+}
+
+.confirm-popup strong {
+  display: inline-block;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: bottom;
+  direction: rtl;
+  background: rgba(255, 107, 107, 0.1);
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin: 0 2px;
+}
+
+.char-limit-warning {
+  color: #ff6b6b;
+  font-size: 12px;
+  margin-top: 5px;
+  text-align: center;
+}
+
+.char-count {
+  font-size: 12px;
+  color: #aaa;
+  text-align: left;
+  margin-top: 5px;
+}
+
+.char-count.warning {
+  color: #ff6b6b;
+}
+
+.char-count.error {
+  color: #ff4757;
+}
+
+@media (max-width: 480px) {
+  .confirm-popup {
+    width: 95vw !important;
+    padding: 15px;
+  }
+
+  .confirm-popup strong {
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 360px) {
+  .confirm-popup strong {
+    max-width: 150px;
   }
 }

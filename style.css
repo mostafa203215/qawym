@@ -13,7 +13,6 @@ body {
   font-family: "Tajawal", sans-serif;
 }
 
-/* نخفي الاسكرول بشكل مؤقت */
 body.hide-scroll {
   overflow: hidden;
 }
@@ -653,7 +652,6 @@ body.hide-scroll {
     visibility: visible;
   }
 }
-/* موبايل */
 @media (max-width: 768px) {
   .footer-container {
     display: flex;
@@ -662,14 +660,13 @@ body.hide-scroll {
     text-align: center;
   }
 
-  /* قويم + اللوجو */
   .footer-col h2.footer-logo {
     justify-content: center;
-    font-size: 34px; /* أكبر شوية */
+    font-size: 34px;
   }
 
   .footer-col h2.footer-logo img {
-    width: 50px; /* كبر الصورة */
+    width: 50px;
     height: auto;
   }
 
@@ -678,14 +675,13 @@ body.hide-scroll {
     font-size: 18px;
   }
 
-  /* الروابط السريعة */
   .footer-col h3 {
     text-align: center;
     font-size: 22px;
   }
 
   .footer-links-grid {
-    grid-template-columns: 1fr; /* يخليهم تحت بعض */
+    grid-template-columns: 1fr;
     gap: 10px;
   }
 
@@ -693,7 +689,6 @@ body.hide-scroll {
     text-align: center;
   }
 
-  /* تابعنا */
   .social-links {
     justify-content: center;
     margin-top: 10px;
@@ -708,7 +703,6 @@ body.hide-scroll {
   }
 }
 
-/* ألوان الهوفر الخاصة بالسوشيال ميديا */
 .social-links a:hover i.fa-facebook {
   background: #1da1f2;
   color: #fff;
@@ -753,7 +747,6 @@ body.hide-scroll {
   color: var(--main-color);
 }
 
-/* روابط سريعة */
 .footer-links-grid ul {
   list-style: none;
   padding: 0;
@@ -775,7 +768,6 @@ body.hide-scroll {
   transform: scale(1.05);
 }
 
-/* الروابط السريعة على الموبايل */
 @media (max-width: 768px) {
   .footer-links-grid {
     display: flex;
@@ -798,7 +790,6 @@ body.hide-scroll {
   }
 }
 
-/* روابط السوشيال */
 .social-links {
   display: flex;
   gap: 10px;
@@ -821,7 +812,6 @@ body.hide-scroll {
   transform: scale(1.1);
 }
 
-/* ألوان الهوفر لكل أيقونة (بدون خط تحت الأيقونة) */
 .social-links a:hover i {
   color: #fff;
 }
@@ -838,7 +828,6 @@ body.hide-scroll {
 .social-links a:hover .fa-youtube {
   background: #ff0000;
 }
-/* ألوان الهوفر لكل أيقونة */
 .social-links a:hover i.fa-facebook {
   background: #1da1f2;
   color: #fff;
@@ -864,7 +853,6 @@ body.hide-scroll {
   padding: 10px;
 }
 
-/* الجزء السفلي */
 .footer-bottom {
   text-align: center;
   padding-top: 20px;
@@ -874,9 +862,8 @@ body.hide-scroll {
   color: #aaa;
 }
 .social-links a {
-  text-decoration: none; /* يشيل الخط تحت الأيقونات */
+  text-decoration: none;
 }
-/* Start Articles */
 .articles {
   padding: 100px 0;
   background-color: #292828;
@@ -890,7 +877,7 @@ body.hide-scroll {
   margin-bottom: 50px;
   position: relative;
   z-index: 1;
-  color: #fff; /* العنوان أبيض */
+  color: #fff;
 }
 
 .articles .container {
@@ -900,7 +887,7 @@ body.hide-scroll {
 }
 
 .articles .box {
-  background: #2a2a2a; /* لون أغمق للكروت */
+  background: #2a2a2a;
   border-radius: 6px;
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
   overflow: hidden;
@@ -926,19 +913,19 @@ body.hide-scroll {
 .articles .content h3 {
   margin: 0 0 10px;
   font-size: 20px;
-  color: var(--play-button-orange); /* النص أبيض */
+  color: var(--play-button-orange);
 }
 
 .articles .content p {
   margin: 0;
-  color: var(--play-button-orange); /* رمادي فاتح عشان يبان */
+  color: var(--play-button-orange);
   line-height: 1.6;
   font-size: 14px;
 }
 
 .articles .info {
   padding: 15px 20px;
-  border-top: 1px solid #444; /* فاصل غامق */
+  border-top: 1px solid #444;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -964,7 +951,6 @@ body.hide-scroll {
   transform: translateX(5px);
 }
 
-/* شكل الزوايا (spikes) */
 .spikes {
   position: relative;
   height: 30px;
@@ -978,7 +964,7 @@ body.hide-scroll {
   left: 0px;
   top: 18px;
   height: 51px;
-  background-image: linear-gradient(88deg, transparent 25%, #00c8ff 25%),
+  background-image: linear-gradient(88deg, transparent 25%, #00c8ff73 25%),
     linear-gradient(293deg, #2a2a2a 25%, transparent 25%);
   background-size: 30px 30px;
 }

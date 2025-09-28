@@ -57,6 +57,8 @@ class ConversationManager {
   constructor() {
     this.conversations = this.loadConversations();
     this.currentConversationId = null;
+    this.currentSearchResults = null;
+    this.currentSearchIndex = 0;
   }
 
   // توليد معرف فريد للمحادثة
@@ -78,11 +80,20 @@ class ConversationManager {
     );
   }
 
-  // إنشاء محادثة جديدة
+  // إنشاء محادثة جديدة مع التحقق من الطول
   createConversation(name) {
+    const trimmedName = name
+      ? name.trim()
+      : `محادثة ${this.conversations.length + 1}`;
+
+    // التحقق من الطول
+    if (trimmedName.length > 100) {
+      throw new Error("اسم المحادثة لا يمكن أن يتجاوز 100 حرف");
+    }
+
     const newConversation = {
       id: this.generateId(),
-      name: name || `محادثة ${this.conversations.length + 1}`,
+      name: trimmedName,
       messages: [],
       createdAt: new Date().toISOString(),
     };
@@ -159,12 +170,19 @@ class ConversationManager {
     }
   }
 
-  // تغيير اسم المحادثة
+  // تغيير اسم المحادثة مع التحقق من الطول
   renameConversation(id, newName) {
     const conversation = this.getConversation(id);
     if (conversation && newName.trim()) {
-      conversation.name = newName.trim();
-      this.updateConversation(id, { name: newName.trim() });
+      const trimmedName = newName.trim();
+
+      // التحقق من الطول
+      if (trimmedName.length > 100) {
+        throw new Error("اسم المحادثة لا يمكن أن يتجاوز 100 حرف");
+      }
+
+      conversation.name = trimmedName;
+      this.updateConversation(id, { name: trimmedName });
       return true;
     }
     return false;
@@ -179,6 +197,17 @@ class ConversationManager {
       (conv) =>
         conv.name.toLowerCase().includes(lowerQuery) ||
         conv.messages.some((msg) => msg.text.toLowerCase().includes(lowerQuery))
+    );
+  }
+
+  // البحث في محادثة محددة
+  searchInConversation(conversationId, query) {
+    const conversation = this.getConversation(conversationId);
+    if (!conversation || !query.trim()) return [];
+
+    const lowerQuery = query.toLowerCase();
+    return conversation.messages.filter((msg) =>
+      msg.text.toLowerCase().includes(lowerQuery)
     );
   }
 
@@ -213,8 +242,12 @@ class ConversationManager {
     return false;
   }
 
-  // دالة تحميل محادثة معينة
-  loadConversation(conversationId) {
+  // دالة تحميل محادثة معينة مع إمكانية التمرير لرسالة محددة
+  loadConversation(
+    conversationId,
+    scrollToMessageId = null,
+    searchQuery = null
+  ) {
     const conversation = this.getConversation(conversationId);
     if (conversation) {
       this.currentConversationId = conversationId;
@@ -236,6 +269,34 @@ class ConversationManager {
         // إضافة أزرار الرسالة
         addMessageActions(messageElement, msg.messageId);
       });
+
+      // التمرير لرسالة محددة إذا تم توفيرها
+      if (scrollToMessageId) {
+        setTimeout(() => {
+          const targetMessage = document.querySelector(
+            `[data-message-id="${scrollToMessageId}"]`
+          );
+          if (targetMessage) {
+            targetMessage.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
+            targetMessage.classList.add("search-result-message");
+
+            // تظليل النص المطلوب إذا كان هناك استعلام بحث
+            if (searchQuery) {
+              highlightTextInMessage(targetMessage, searchQuery);
+            }
+
+            setTimeout(() => {
+              targetMessage.classList.remove("search-result-message");
+              if (searchQuery) {
+                removeHighlightFromMessage(targetMessage);
+              }
+            }, 3000);
+          }
+        }, 100);
+      }
 
       // إضافة فئة نشطة للمحادثة المحددة
       document.querySelectorAll(".conversation-item").forEach((item) => {
@@ -320,15 +381,12 @@ function copyMessageText(messageElement) {
     });
 }
 
-// دالة إشعار النسخ
 function showCopyNotification(message) {
-  // إزالة الإشعار السابق إذا كان موجودًا
   const existingNotification = document.querySelector(".copy-notification");
   if (existingNotification) {
     existingNotification.remove();
   }
 
-  // إنشاء إشعار جديد
   const notification = document.createElement("div");
   notification.className = "copy-notification";
   notification.textContent = message;
@@ -347,7 +405,6 @@ function showCopyNotification(message) {
 
   document.body.appendChild(notification);
 
-  // إزالة الإشعار بعد 2 ثانية
   setTimeout(() => {
     if (notification.parentNode) {
       notification.style.animation = "slideOut 0.3s ease";
@@ -771,7 +828,9 @@ function showRenameModal(conversationId, currentName) {
   popup.innerHTML = `
     <span class="close-modal">&times;</span>
     <h3>تغيير اسم المحادثة</h3>
-    <input type="text" id="renameInput" value="${currentName}" placeholder="اكتب الاسم الجديد">
+    <input type="text" id="renameInput" value="${currentName}" placeholder="اكتب الاسم الجديد (حد أقصى 100 حرف)" maxlength="100">
+    <div class="char-count" id="renameCount">${currentName.length}/100</div>
+    <p class="char-limit-warning">الحد الأقصى لطول الاسم هو 100 حرف</p>
     <div class="actions">
       <button id="saveRenameBtn">حفظ</button>
       <button id="cancelRenameBtn">إلغاء</button>
@@ -782,11 +841,31 @@ function showRenameModal(conversationId, currentName) {
   document.body.appendChild(overlay);
 
   // التركيز على حقل الإدخال
+  const renameInput = document.getElementById("renameInput");
+  const charCount = document.getElementById("renameCount");
+
   setTimeout(() => {
-    const renameInput = document.getElementById("renameInput");
     renameInput.focus();
     renameInput.select();
   }, 100);
+
+  // تحديث عداد الأحرف
+  renameInput.addEventListener("input", (e) => {
+    const length = e.target.value.length;
+    charCount.textContent = `${length}/100`;
+
+    if (length > 90) {
+      charCount.classList.add("warning");
+    } else {
+      charCount.classList.remove("warning");
+    }
+
+    if (length >= 100) {
+      charCount.classList.add("error");
+    } else {
+      charCount.classList.remove("error");
+    }
+  });
 
   // زر الإغلاق (X)
   popup.querySelector(".close-modal").addEventListener("click", () => {
@@ -800,13 +879,15 @@ function showRenameModal(conversationId, currentName) {
 
   // زر الحفظ
   popup.querySelector("#saveRenameBtn").addEventListener("click", () => {
-    const newName = popup.querySelector("#renameInput").value.trim();
+    const newName = renameInput.value.trim();
     if (newName) {
-      if (conversationManager.renameConversation(conversationId, newName)) {
-        loadConversationsList();
-        overlay.remove();
-      } else {
-        alert("حدث خطأ أثناء تغيير الاسم");
+      try {
+        if (conversationManager.renameConversation(conversationId, newName)) {
+          loadConversationsList();
+          overlay.remove();
+        }
+      } catch (error) {
+        alert(error.message);
       }
     } else {
       alert("يرجى إدخال اسم للمحادثة");
@@ -821,7 +902,7 @@ function showRenameModal(conversationId, currentName) {
   });
 
   // إرسال بالضغط على Enter
-  popup.querySelector("#renameInput").addEventListener("keypress", (e) => {
+  renameInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
       popup.querySelector("#saveRenameBtn").click();
     }
@@ -1005,7 +1086,9 @@ newChatBtn.addEventListener("click", () => {
   popup.innerHTML = `
     <span class="close-modal">&times;</span>
     <h3>سمي المحادثة</h3>
-    <input type="text" id="chatNameInput" placeholder="اكتب الاسم">
+    <input type="text" id="chatNameInput" placeholder="اكتب الاسم (حد أقصى 100 حرف)" maxlength="100">
+    <div class="char-count" id="chatNameCount">0/100</div>
+    <p class="char-limit-warning">الحد الأقصى لطول الاسم هو 100 حرف</p>
     <div class="actions">
       <button id="saveChatBtn">إنشاء</button>
       <button id="cancelChatBtn">إلغاء</button>
@@ -1016,9 +1099,30 @@ newChatBtn.addEventListener("click", () => {
   document.body.appendChild(overlay);
 
   // التركيز على حقل الإدخال
+  const chatNameInput = document.getElementById("chatNameInput");
+  const charCount = document.getElementById("chatNameCount");
+
   setTimeout(() => {
-    document.getElementById("chatNameInput").focus();
+    chatNameInput.focus();
   }, 100);
+
+  // تحديث عداد الأحرف
+  chatNameInput.addEventListener("input", (e) => {
+    const length = e.target.value.length;
+    charCount.textContent = `${length}/100`;
+
+    if (length > 90) {
+      charCount.classList.add("warning");
+    } else {
+      charCount.classList.remove("warning");
+    }
+
+    if (length >= 100) {
+      charCount.classList.add("error");
+    } else {
+      charCount.classList.remove("error");
+    }
+  });
 
   // زر الإغلاق (X)
   popup.querySelector(".close-modal").addEventListener("click", () => {
@@ -1032,28 +1136,32 @@ newChatBtn.addEventListener("click", () => {
 
   // زر الحفظ
   popup.querySelector("#saveChatBtn").addEventListener("click", () => {
-    const chatName = popup.querySelector("#chatNameInput").value.trim();
+    const chatName = chatNameInput.value.trim();
     const name =
       chatName || `محادثة ${conversationManager.conversations.length + 1}`;
 
-    // إنشاء محادثة جديدة
-    const newId = conversationManager.createConversation(name);
+    try {
+      // إنشاء محادثة جديدة
+      const newId = conversationManager.createConversation(name);
 
-    // تحميل قائمة المحادثات
-    loadConversationsList();
+      // تحميل قائمة المحادثات
+      loadConversationsList();
 
-    // تحميل المحادثة الجديدة
-    conversationManager.loadConversation(newId);
+      // تحميل المحادثة الجديدة
+      conversationManager.loadConversation(newId);
 
-    overlay.remove();
+      overlay.remove();
 
-    // إغلاق السايدبار بعد إنشاء المحادثة (على الجوال)
-    setTimeout(() => {
-      if (window.innerWidth <= 768) {
-        sidebar.classList.remove("open");
-        sidebarOverlay.style.display = "none";
-      }
-    }, 500);
+      // إغلاق السايدبار بعد إنشاء المحادثة (على الجوال)
+      setTimeout(() => {
+        if (window.innerWidth <= 768) {
+          sidebar.classList.remove("open");
+          sidebarOverlay.style.display = "none";
+        }
+      }, 500);
+    } catch (error) {
+      alert(error.message);
+    }
   });
 
   // الضغط برة البوب أب يقفل
@@ -1064,7 +1172,7 @@ newChatBtn.addEventListener("click", () => {
   });
 
   // إرسال بالضغط على Enter
-  popup.querySelector("#chatNameInput").addEventListener("keypress", (e) => {
+  chatNameInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
       popup.querySelector("#saveChatBtn").click();
     }
@@ -1142,7 +1250,7 @@ searchBtn.addEventListener("click", () => {
   });
 });
 
-// دالة تنفيذ البحث وعرض النتائج
+// دالة تنفيذ البحث وعرض النتائج مع إمكانية التنقل للمكان المحدد
 function performSearch(query, resultsContainer) {
   resultsContainer.innerHTML = "";
 
@@ -1164,8 +1272,8 @@ function performSearch(query, resultsContainer) {
     const resultItem = document.createElement("div");
     resultItem.classList.add("search-result-item");
 
-    // البحث عن الرسالة المطابقة
-    const matchingMessage = conversation.messages.find((msg) =>
+    // البحث عن جميع الرسائل المطابقة
+    const matchingMessages = conversation.messages.filter((msg) =>
       msg.text.toLowerCase().includes(query.toLowerCase())
     );
 
@@ -1173,16 +1281,35 @@ function performSearch(query, resultsContainer) {
       <div class="result-header">
         <i class="fas fa-comment"></i>
         <span class="result-title">${conversation.name}</span>
+        <span class="result-count">(${matchingMessages.length} نتيجة)</span>
       </div>
       ${
-        matchingMessage
-          ? `<div class="result-preview">${matchingMessage.text}</div>`
+        matchingMessages.length > 0
+          ? `<div class="result-preview">${highlightText(
+              matchingMessages[0].text,
+              query
+            )}</div>`
           : ""
       }
     `;
 
     resultItem.addEventListener("click", () => {
-      conversationManager.loadConversation(conversation.id);
+      // حفظ نتائج البحث للمحادثة الحالية
+      conversationManager.currentSearchResults = matchingMessages;
+      conversationManager.currentSearchIndex = 0;
+
+      // تحميل المحادثة مع التمرير لأول نتيجة
+      conversationManager.loadConversation(
+        conversation.id,
+        matchingMessages[0]?.messageId,
+        query
+      );
+
+      // إظهار أدوات التنقل إذا كان هناك أكثر من نتيجة
+      if (matchingMessages.length > 1) {
+        showSearchNavigation(conversation.id, matchingMessages, 0, query);
+      }
+
       document.querySelector(".overlay").remove();
 
       if (window.innerWidth <= 768) {
@@ -1192,6 +1319,148 @@ function performSearch(query, resultsContainer) {
     });
 
     resultsContainer.appendChild(resultItem);
+  });
+}
+
+// دالة لتظليل النص المطابق في المعاينة
+function highlightText(text, query) {
+  const regex = new RegExp(`(${query})`, "gi");
+  return text.replace(regex, '<mark class="search-highlight">$1</mark>');
+}
+
+// دالة للتمرير إلى رسالة محددة وتظليل النص المطلوب
+function scrollToMessage(messageId, searchQuery) {
+  const messageElement = document.querySelector(
+    `[data-message-id="${messageId}"]`
+  );
+
+  if (messageElement) {
+    // التمرير إلى الرسالة
+    messageElement.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+
+    // إضافة تأثير تمييز مؤقت
+    messageElement.classList.add("search-result-message");
+
+    // تظليل النص المطلوب داخل الرسالة
+    highlightTextInMessage(messageElement, searchQuery);
+
+    // إزالة التمييز بعد فترة
+    setTimeout(() => {
+      messageElement.classList.remove("search-result-message");
+      removeHighlightFromMessage(messageElement);
+    }, 3000);
+  }
+}
+
+// دالة لتظليل النص داخل الرسالة
+function highlightTextInMessage(messageElement, query) {
+  const text = messageElement.textContent;
+  const regex = new RegExp(`(${query})`, "gi");
+  const highlightedText = text.replace(
+    regex,
+    '<mark class="message-highlight">$1</mark>'
+  );
+
+  // حفظ النص الأصلي كخاصية مخصصة
+  messageElement.dataset.originalText = text;
+
+  // استبدال النص بالنص المظلل
+  messageElement.innerHTML = highlightedText;
+
+  // إعادة إضافة أزرار الرسالة
+  const messageId = messageElement.dataset.messageId;
+  addMessageActions(messageElement, messageId);
+}
+
+// دالة لإزالة التظليل من الرسالة
+function removeHighlightFromMessage(messageElement) {
+  const originalText = messageElement.dataset.originalText;
+  if (originalText) {
+    messageElement.textContent = originalText;
+
+    // إعادة إضافة أزرار الرسالة
+    const messageId = messageElement.dataset.messageId;
+    addMessageActions(messageElement, messageId);
+  }
+}
+
+// دالة لإظهار أدوات التنقل بين النتائج
+function showSearchNavigation(
+  conversationId,
+  matchingMessages,
+  currentIndex = 0,
+  searchQuery = ""
+) {
+  // إزالة أدوات التنقل الحالية إذا كانت موجودة
+  const existingNav = document.querySelector(".search-navigation");
+  if (existingNav) {
+    existingNav.remove();
+  }
+
+  if (matchingMessages.length <= 1) return;
+
+  const nav = document.createElement("div");
+  nav.className = "search-navigation";
+  nav.innerHTML = `
+    <div class="search-nav-content">
+      <span class="search-nav-info">${currentIndex + 1} من ${
+    matchingMessages.length
+  }</span>
+      <button class="search-nav-btn prev-btn" ${
+        currentIndex === 0 ? "disabled" : ""
+      }>
+        <i class="fas fa-chevron-up"></i>
+      </button>
+      <button class="search-nav-btn next-btn" ${
+        currentIndex === matchingMessages.length - 1 ? "disabled" : ""
+      }>
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <button class="search-nav-btn close-btn">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  `;
+
+  document.querySelector(".chat-area").appendChild(nav);
+
+  // أحداث الأزرار
+  nav.querySelector(".prev-btn").addEventListener("click", () => {
+    if (currentIndex > 0) {
+      const newIndex = currentIndex - 1;
+      scrollToMessage(matchingMessages[newIndex].messageId, searchQuery);
+      showSearchNavigation(
+        conversationId,
+        matchingMessages,
+        newIndex,
+        searchQuery
+      );
+    }
+  });
+
+  nav.querySelector(".next-btn").addEventListener("click", () => {
+    if (currentIndex < matchingMessages.length - 1) {
+      const newIndex = currentIndex + 1;
+      scrollToMessage(matchingMessages[newIndex].messageId, searchQuery);
+      showSearchNavigation(
+        conversationId,
+        matchingMessages,
+        newIndex,
+        searchQuery
+      );
+    }
+  });
+
+  nav.querySelector(".close-btn").addEventListener("click", () => {
+    nav.remove();
+    // إزالة التظليل من جميع الرسائل
+    document.querySelectorAll(".search-result-message").forEach((msg) => {
+      msg.classList.remove("search-result-message");
+      removeHighlightFromMessage(msg);
+    });
   });
 }
 

@@ -7,13 +7,12 @@ body {
   overflow-x: hidden;
 }
 body.loading {
-  overflow: hidden; /* يخفي الاسكرول */
+  overflow: hidden; 
 }
 * {
   scrollbar-width: auto;
   scrollbar-color: #138bac #00e5ff11;
 }
-/* Preloader */
 .preloader {
   position: fixed;
   top: 0;
@@ -35,7 +34,6 @@ body.loading {
   pointer-events: none;
 }
 
-/* Spinner */
 .spinner {
   width: 50px;
   height: 50px;
@@ -54,7 +52,6 @@ body.loading {
   }
 }
 
-/* Reveal Animation */
 .reveal {
   opacity: 0;
   transform: translateY(30px);
@@ -65,14 +62,13 @@ body.loading {
   transform: translateY(0);
 }
 
-/* الهيدر */
 .article-header {
   background: #1a1a1a;
   padding: 1rem 2rem;
   border-bottom: 1px solid #333;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* يوزع اللوجو يمين والمنزل شمال */
+  justify-content: space-between; 
 }
 
 .header-content {
@@ -96,7 +92,6 @@ body.loading {
   margin-left: 10px;
 }
 
-/* زر المنزل */
 .header-nav {
   margin-left: 20px;
 }
@@ -118,7 +113,6 @@ body.loading {
   box-shadow: 0 4px 10px rgba(0, 200, 255, 0.5);
 }
 
-/* محتوى المقال */
 .article-container {
   max-width: 850px;
   margin: auto;
@@ -139,8 +133,8 @@ body.loading {
 
 .article-cover {
   width: 100%;
-  max-width: 900px; /* أكبر من باقي الصور */
-  aspect-ratio: 16 / 9; /* نسبة العرض للطول 16:9 */
+  max-width: 900px; 
+  aspect-ratio: 16 / 9; 
   object-fit: cover;
   border-radius: 20px;
   margin-bottom: 2rem;
@@ -156,15 +150,14 @@ body.loading {
 
 .article-content img.article-img {
   width: 100%;
-  max-width: 800px; /* نفس حجم ثابت للصور الباقية */
-  aspect-ratio: 2 / 1; /* نسبة العرض للطول 2:1 */
+  max-width: 800px; 
+  aspect-ratio: 2 / 1; 
   object-fit: cover;
   border-radius: 10px;
   margin: 20px auto;
   display: block;
 }
 
-/* زر الرجوع */
 .back-btn {
   display: inline-block;
   margin-top: 2rem;
@@ -183,7 +176,7 @@ body.loading {
   box-shadow: 0 6px 18px rgba(0, 200, 255, 0.6);
 }
 
-/* الفوتر */
+
 .article-footer {
   background: #111;
   color: #888;
@@ -193,13 +186,11 @@ body.loading {
   font-size: 0.9rem;
 }
 .article-header {
-  position: sticky; /* يخليه ثابت */
-  top: 0; /* يثبت فوق */
-  z-index: 1000; /* عشان يكون فوق باقي العناصر */
+  position: sticky; 
+  top: 0; 
+  z-index: 1000; 
 }
 
-/* Scroll to Top Button */
-/* Scroll to Top Button */
 .scroll-top-btn {
   position: fixed;
   bottom: 25px;

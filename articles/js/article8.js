@@ -1,18 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // نضيف loading أول ما يبدأ
   document.body.classList.add("loading");
 
-  // Preloader
   const preloader = document.querySelector(".preloader");
   window.addEventListener("load", () => {
     setTimeout(() => {
       preloader.classList.add("hidden");
-      // بعد ما يخلص التحميل نشيل الكلاس فيظهر الاسكرول
       document.body.classList.remove("loading");
-    }, 800); // وقت صغير للنعومة
+    }, 800); 
   });
 
-  // Reveal on scroll
   function revealOnScroll() {
     document.querySelectorAll(".reveal").forEach((el) => {
       const rect = el.getBoundingClientRect();
@@ -24,7 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("scroll", revealOnScroll, { passive: true });
   revealOnScroll();
-  // Scroll to Top Button
   (function () {
     const scrollBtn = document.getElementById("scrollTopBtn");
     if (!scrollBtn) return;

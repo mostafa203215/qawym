@@ -1,14 +1,11 @@
-// ======== سايدبار ديناميكي - إصلاح ========
 const sidebar = document.querySelector(".sidebar");
 const hamburger = document.querySelector(".hamburger");
 const mobileHamburger = document.querySelector(".mobile-hamburger");
 
-// إنشاء طبقة شفافة للسايدبار على الجوال
 const sidebarOverlay = document.createElement("div");
 sidebarOverlay.classList.add("sidebar-overlay");
 document.querySelector(".container").appendChild(sidebarOverlay);
 
-// فتح/إغلاق السايدبار عند الضغط على الهامبرجر في السايدبار
 hamburger.addEventListener("click", (e) => {
   e.stopPropagation();
   sidebar.classList.toggle("open");
@@ -18,19 +15,16 @@ hamburger.addEventListener("click", (e) => {
       : "none";
 });
 
-// فتح/إغلاق السايدبار عند الضغط على الهامبرجر في الجوال
 mobileHamburger.addEventListener("click", () => {
   sidebar.classList.add("open");
   sidebarOverlay.style.display = "block";
 });
 
-// إغلاق السايدبار عند النقر خارجًا (إذا كان مفتوحًا على الجوال)
 sidebarOverlay.addEventListener("click", () => {
   sidebar.classList.remove("open");
   sidebarOverlay.style.display = "none";
 });
 
-// إغلاق السايدبار عند النقر خارجًا (إذا كان مفتوحًا على الجوال)
 document.addEventListener("click", (e) => {
   const isMobile = window.innerWidth <= 768;
   if (
@@ -44,7 +38,6 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// إغلاق السايدبار عند تغيير حجم النافذة
 window.addEventListener("resize", () => {
   if (window.innerWidth > 768) {
     sidebar.classList.remove("open");
@@ -52,7 +45,6 @@ window.addEventListener("resize", () => {
   }
 });
 
-// ======== نظام إدارة المحادثات ========
 class ConversationManager {
   constructor() {
     this.conversations = this.loadConversations();
@@ -61,18 +53,15 @@ class ConversationManager {
     this.currentSearchIndex = 0;
   }
 
-  // توليد معرف فريد للمحادثة
   generateId() {
     return Date.now().toString(36) + Math.random().toString(36).substr(2);
   }
 
-  // تحميل المحادثات من localStorage
   loadConversations() {
     const stored = localStorage.getItem("chatConversations");
     return stored ? JSON.parse(stored) : [];
   }
 
-  // حفظ المحادثات إلى localStorage
   saveConversations() {
     localStorage.setItem(
       "chatConversations",
@@ -80,13 +69,11 @@ class ConversationManager {
     );
   }
 
-  // إنشاء محادثة جديدة مع التحقق من الطول
   createConversation(name) {
     const trimmedName = name
       ? name.trim()
       : `محادثة ${this.conversations.length + 1}`;
 
-    // التحقق من الطول
     if (trimmedName.length > 100) {
       throw new Error("اسم المحادثة لا يمكن أن يتجاوز 100 حرف");
     }
@@ -103,12 +90,10 @@ class ConversationManager {
     return newConversation.id;
   }
 
-  // الحصول على محادثة بواسطة ID
   getConversation(id) {
     return this.conversations.find((conv) => conv.id === id);
   }
 
-  // تحديث محادثة
   updateConversation(id, updates) {
     const index = this.conversations.findIndex((conv) => conv.id === id);
     if (index !== -1) {
@@ -117,7 +102,6 @@ class ConversationManager {
     }
   }
 
-  // إضافة رسالة إلى محادثة
   addMessage(conversationId, message, sender) {
     const conversation = this.getConversation(conversationId);
     if (conversation) {
@@ -125,7 +109,7 @@ class ConversationManager {
         text: message,
         sender: sender,
         timestamp: new Date().toISOString(),
-        messageId: this.generateId(), // إضافة معرف فريد للرسالة
+        messageId: this.generateId(),
       };
 
       conversation.messages.push(newMessage);
@@ -138,7 +122,6 @@ class ConversationManager {
     return null;
   }
 
-  // تحديث رسالة موجودة
   updateMessage(conversationId, messageId, newText) {
     const conversation = this.getConversation(conversationId);
     if (conversation) {
@@ -159,24 +142,20 @@ class ConversationManager {
     return false;
   }
 
-  // حذف محادثة
   deleteConversation(id) {
     this.conversations = this.conversations.filter((conv) => conv.id !== id);
     this.saveConversations();
 
-    // إذا كانت المحادثة المحذوفة هي الحالية، انتقل إلى محادثة جديدة
     if (this.currentConversationId === id) {
       this.switchToNewConversation();
     }
   }
 
-  // تغيير اسم المحادثة مع التحقق من الطول
   renameConversation(id, newName) {
     const conversation = this.getConversation(id);
     if (conversation && newName.trim()) {
       const trimmedName = newName.trim();
 
-      // التحقق من الطول
       if (trimmedName.length > 100) {
         throw new Error("اسم المحادثة لا يمكن أن يتجاوز 100 حرف");
       }
@@ -188,7 +167,6 @@ class ConversationManager {
     return false;
   }
 
-  // البحث في المحادثات
   searchConversations(query) {
     if (!query.trim()) return this.conversations;
 
@@ -200,7 +178,6 @@ class ConversationManager {
     );
   }
 
-  // البحث في محادثة محددة
   searchInConversation(conversationId, query) {
     const conversation = this.getConversation(conversationId);
     if (!conversation || !query.trim()) return [];
@@ -211,7 +188,6 @@ class ConversationManager {
     );
   }
 
-  // التبديل إلى محادثة جديدة
   switchToNewConversation() {
     if (this.conversations.length > 0) {
       this.loadConversation(this.conversations[0].id);
@@ -221,7 +197,6 @@ class ConversationManager {
     }
   }
 
-  // حذف الرسائل بعد رسالة معينة (لإعادة الإرسال)
   truncateMessagesAfter(conversationId, messageId) {
     const conversation = this.getConversation(conversationId);
     if (conversation) {
@@ -242,7 +217,6 @@ class ConversationManager {
     return false;
   }
 
-  // دالة تحميل محادثة معينة مع إمكانية التمرير لرسالة محددة
   loadConversation(
     conversationId,
     scrollToMessageId = null,
@@ -252,25 +226,19 @@ class ConversationManager {
     if (conversation) {
       this.currentConversationId = conversationId;
 
-      // إخفاء رسالة الترحيب
       const welcome = document.querySelector(".welcome");
       if (welcome) welcome.style.display = "none";
 
-      // مسح الرسائل الحالية
       messages.innerHTML = "";
 
-      // عرض رسائل المحادثة مع إضافة الأزرار
       conversation.messages.forEach((msg) => {
         const messageElement = addMessage(msg.text, msg.sender, false);
 
-        // تخزين معرف الرسالة
         messageElement.dataset.messageId = msg.messageId;
 
-        // إضافة أزرار الرسالة
         addMessageActions(messageElement, msg.messageId);
       });
 
-      // التمرير لرسالة محددة إذا تم توفيرها
       if (scrollToMessageId) {
         setTimeout(() => {
           const targetMessage = document.querySelector(
@@ -283,7 +251,6 @@ class ConversationManager {
             });
             targetMessage.classList.add("search-result-message");
 
-            // تظليل النص المطلوب إذا كان هناك استعلام بحث
             if (searchQuery) {
               highlightTextInMessage(targetMessage, searchQuery);
             }
@@ -298,7 +265,6 @@ class ConversationManager {
         }, 100);
       }
 
-      // إضافة فئة نشطة للمحادثة المحددة
       document.querySelectorAll(".conversation-item").forEach((item) => {
         item.classList.remove("active");
       });
@@ -310,39 +276,31 @@ class ConversationManager {
         activeItem.classList.add("active");
       }
 
-      // إغلاق السايدبار على الجوال بعد اختيار محادثة
       if (window.innerWidth <= 768) {
         sidebar.classList.remove("open");
         sidebarOverlay.style.display = "none";
       }
 
-      // التركيز على حقل الإدخال
       userInput.focus();
     }
   }
 
-  // دالة عرض رسالة الترحيب
   displayWelcomeMessage() {
     this.currentConversationId = null;
 
-    // إظهار رسالة الترحيب
     const welcome = document.querySelector(".welcome");
     if (welcome) welcome.style.display = "flex";
 
-    // مسح الرسائل
     messages.innerHTML = "";
 
-    // إزالة الفئة النشطة من جميع المحادثات
     document.querySelectorAll(".conversation-item").forEach((item) => {
       item.classList.remove("active");
     });
   }
 }
 
-// إنشاء مدير المحادثات
 const conversationManager = new ConversationManager();
 
-// ======== عناصر المحادثة ========
 const sendBtn = document.getElementById("sendBtn");
 const userInput = document.getElementById("userInput");
 const messages = document.querySelector(".messages");
@@ -350,29 +308,23 @@ const conversationList = document.getElementById("conversationList");
 
 let waitingBot = false;
 
-// إعدادات API بناءً على الصورة
 const API_CONFIG = {
-  token: "test1", // Token المطلوب
-  name: "test1", // Name المطلوب
+  token: "test1",
+  name: "test1",
   contentType: "application/json",
 };
 
-// ======== وظائف أزرار الرسائل ========
-
-// دالة نسخ النص
 function copyMessageText(messageElement) {
   const text = messageElement.textContent || messageElement.innerText;
 
   navigator.clipboard
     .writeText(text)
     .then(() => {
-      // تأثير بصر للإشارة إلى النسخ
       messageElement.classList.add("message-copied");
       setTimeout(() => {
         messageElement.classList.remove("message-copied");
       }, 500);
 
-      // إشعار صغير
       showCopyNotification("تم نسخ الرسالة");
     })
     .catch((err) => {
@@ -417,12 +369,10 @@ function showCopyNotification(message) {
   }, 2000);
 }
 
-// دالة تعديل الرسالة
 function editMessage(messageElement) {
   const currentText = messageElement.textContent || messageElement.innerText;
   const messageId = messageElement.dataset.messageId;
 
-  // إنشاء حقل نص للتعديل
   const input = document.createElement("textarea");
   input.value = currentText;
   input.style.cssText = `
@@ -437,12 +387,10 @@ function editMessage(messageElement) {
     resize: vertical;
   `;
 
-  // استبدال محتوى الرسالة بحقل النص
   messageElement.textContent = "";
   messageElement.appendChild(input);
   input.focus();
 
-  // إضافة أزرار الحفظ والإلغاء
   const editActions = document.createElement("div");
   editActions.style.cssText = `
     display: flex;
@@ -478,25 +426,21 @@ function editMessage(messageElement) {
   saveBtn.onclick = async () => {
     const newText = input.value.trim();
     if (newText) {
-      // تحديث الرسالة في التخزين المحلي
       conversationManager.updateMessage(
         conversationManager.currentConversationId,
         messageId,
         newText
       );
 
-      // حذف جميع الرسائل بعد هذه الرسالة
       conversationManager.truncateMessagesAfter(
         conversationManager.currentConversationId,
         messageId
       );
 
-      // إعادة تحميل المحادثة لعرض التغييرات
       conversationManager.loadConversation(
         conversationManager.currentConversationId
       );
 
-      // إرسال الرسالة المعدلة إلى الـAI
       await sendEditedMessage(newText);
     } else {
       messageElement.textContent = currentText;
@@ -509,7 +453,6 @@ function editMessage(messageElement) {
     addMessageActions(messageElement, messageId);
   };
 
-  // إغلاق بالضغط على Escape
   input.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       messageElement.textContent = currentText;
@@ -524,7 +467,6 @@ function editMessage(messageElement) {
   messageElement.appendChild(editActions);
 }
 
-// دالة إرسال الرسالة المعدلة إلى الـAI
 async function sendEditedMessage(text) {
   if (waitingBot) return;
 
@@ -532,7 +474,6 @@ async function sendEditedMessage(text) {
   sendBtn.disabled = true;
 
   try {
-    // إرسال الطلب إلى API
     const response = await fetch(
       "https://mohamed50mostafa.pythonanywhere.com/api/",
       {
@@ -563,7 +504,6 @@ async function sendEditedMessage(text) {
       data.response ||
       "تم استلام الرد من الخادم بنجاح";
 
-    // إضافة رد البوت
     const botMessageId = conversationManager.addMessage(
       conversationManager.currentConversationId,
       botReply,
@@ -575,7 +515,6 @@ async function sendEditedMessage(text) {
   } catch (err) {
     console.error("Error details:", err);
 
-    // رسائل خطأ أكثر وصفية
     if (err.name === "TypeError" && err.message.includes("Failed to fetch")) {
       const errorMsg =
         "⚠️ تعذر الاتصال بالخادم. يرجى التحقق من اتصال الإنترنت.";
@@ -615,19 +554,15 @@ async function sendEditedMessage(text) {
   }
 }
 
-// دالة إضافة أزرار الرسالة
 function addMessageActions(messageElement, messageId = null) {
-  // إزالة الأزرار الحالية إذا كانت موجودة
   const existingActions = messageElement.querySelector(".message-actions");
   if (existingActions) {
     existingActions.remove();
   }
 
-  // إنشاء أزرار جديدة
   const messageActions = document.createElement("div");
   messageActions.className = "message-actions";
 
-  // زر النسخ
   const copyBtn = document.createElement("button");
   copyBtn.className = "message-action-btn copy-btn";
   copyBtn.innerHTML = '<i class="far fa-copy"></i>';
@@ -639,7 +574,6 @@ function addMessageActions(messageElement, messageId = null) {
 
   messageActions.appendChild(copyBtn);
 
-  // زر التعديل (لرسائل المستخدم فقط)
   if (messageElement.classList.contains("user")) {
     const editBtn = document.createElement("button");
     editBtn.className = "message-action-btn edit-btn";
@@ -656,7 +590,6 @@ function addMessageActions(messageElement, messageId = null) {
   messageElement.appendChild(messageActions);
 }
 
-// ======== نافذة تأكيد الحذف المخصصة ========
 function showDeleteConfirmation(conversationName, conversationId) {
   const overlay = document.createElement("div");
   overlay.classList.add("overlay");
@@ -679,36 +612,30 @@ function showDeleteConfirmation(conversationName, conversationId) {
   overlay.appendChild(popup);
   document.body.appendChild(overlay);
 
-  // التركيز على زر الإلغاء
   setTimeout(() => {
     document.getElementById("cancelDeleteBtn").focus();
   }, 100);
 
-  // زر الإغلاق (X)
   popup.querySelector(".close-modal").addEventListener("click", () => {
     overlay.remove();
   });
 
-  // زر الإلغاء
   popup.querySelector("#cancelDeleteBtn").addEventListener("click", () => {
     overlay.remove();
   });
 
-  // زر التأكيد
   popup.querySelector("#confirmDeleteBtn").addEventListener("click", () => {
     conversationManager.deleteConversation(conversationId);
     loadConversationsList();
     overlay.remove();
   });
 
-  // الضغط برة البوب أب يقفل
   overlay.addEventListener("click", (e) => {
     if (e.target === overlay) {
       overlay.remove();
     }
   });
 
-  // إغلاق بالضغط على Escape
   document.addEventListener("keydown", function closeOnEscape(e) {
     if (e.key === "Escape") {
       overlay.remove();
@@ -717,7 +644,6 @@ function showDeleteConfirmation(conversationName, conversationId) {
   });
 }
 
-// دالة تحميل وعرض المحادثات في الشريط الجانبي
 function loadConversationsList(conversations = null) {
   conversationList.innerHTML = "";
 
@@ -756,7 +682,6 @@ function loadConversationsList(conversations = null) {
       </div>
     `;
 
-    // حدث النقر لتحميل المحادثة
     listItem.addEventListener("click", (e) => {
       if (!e.target.closest(".conversation-actions")) {
         conversationManager.loadConversation(conversation.id);
@@ -767,14 +692,12 @@ function loadConversationsList(conversations = null) {
       }
     });
 
-    // إدارة قائمة المحادثة (النقاط الثلاث)
     const menuBtn = listItem.querySelector(".conversation-menu-btn");
     const menu = listItem.querySelector(".conversation-menu");
 
     menuBtn.addEventListener("click", (e) => {
       e.stopPropagation();
 
-      // إغلاق جميع القوائم المفتوحة الأخرى
       document.querySelectorAll(".conversation-menu").forEach((otherMenu) => {
         if (otherMenu !== menu) {
           otherMenu.classList.remove("active");
@@ -784,7 +707,6 @@ function loadConversationsList(conversations = null) {
       menu.classList.toggle("active");
     });
 
-    // حدث تغيير الاسم
     const renameBtn = listItem.querySelector(".rename-btn");
     renameBtn.addEventListener("click", (e) => {
       e.stopPropagation();
@@ -792,7 +714,6 @@ function loadConversationsList(conversations = null) {
       showRenameModal(conversation.id, conversation.name);
     });
 
-    // حدث حذف المحادثة (باستخدام النافذة المخصصة)
     const deleteBtn = listItem.querySelector(".delete-btn");
     deleteBtn.addEventListener("click", (e) => {
       e.stopPropagation();
@@ -803,7 +724,6 @@ function loadConversationsList(conversations = null) {
     conversationList.appendChild(listItem);
   });
 
-  // إغلاق القوائم عند النقر خارجها
   document.addEventListener("click", (e) => {
     if (
       !e.target.closest(".conversation-menu") &&
@@ -816,7 +736,6 @@ function loadConversationsList(conversations = null) {
   });
 }
 
-// دالة عرض نافذة تغيير الاسم
 function showRenameModal(conversationId, currentName) {
   const overlay = document.createElement("div");
   overlay.classList.add("overlay");
@@ -840,7 +759,6 @@ function showRenameModal(conversationId, currentName) {
   overlay.appendChild(popup);
   document.body.appendChild(overlay);
 
-  // التركيز على حقل الإدخال
   const renameInput = document.getElementById("renameInput");
   const charCount = document.getElementById("renameCount");
 
@@ -849,7 +767,6 @@ function showRenameModal(conversationId, currentName) {
     renameInput.select();
   }, 100);
 
-  // تحديث عداد الأحرف
   renameInput.addEventListener("input", (e) => {
     const length = e.target.value.length;
     charCount.textContent = `${length}/100`;
@@ -867,17 +784,14 @@ function showRenameModal(conversationId, currentName) {
     }
   });
 
-  // زر الإغلاق (X)
   popup.querySelector(".close-modal").addEventListener("click", () => {
     overlay.remove();
   });
 
-  // زر الإلغاء
   popup.querySelector("#cancelRenameBtn").addEventListener("click", () => {
     overlay.remove();
   });
 
-  // زر الحفظ
   popup.querySelector("#saveRenameBtn").addEventListener("click", () => {
     const newName = renameInput.value.trim();
     if (newName) {
@@ -894,14 +808,12 @@ function showRenameModal(conversationId, currentName) {
     }
   });
 
-  // الضغط برة البوب أب يقفل
   overlay.addEventListener("click", (e) => {
     if (e.target === overlay) {
       overlay.remove();
     }
   });
 
-  // إرسال بالضغط على Enter
   renameInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
       popup.querySelector("#saveRenameBtn").click();
@@ -909,13 +821,11 @@ function showRenameModal(conversationId, currentName) {
   });
 }
 
-// دالة إرسال الرسائل
 async function sendMessage() {
   if (waitingBot) return;
   const text = userInput.value.trim();
   if (!text) return;
 
-  // إذا لم تكن هناك محادثة نشطة، إنشاء واحدة جديدة
   if (!conversationManager.currentConversationId) {
     const welcome = document.querySelector(".welcome");
     if (welcome) welcome.style.display = "none";
@@ -927,7 +837,6 @@ async function sendMessage() {
     loadConversationsList();
   }
 
-  // إضافة رسالة المستخدم
   const messageId = conversationManager.addMessage(
     conversationManager.currentConversationId,
     text,
@@ -943,7 +852,6 @@ async function sendMessage() {
   sendBtn.disabled = true;
 
   try {
-    // إرسال الطلب كـ JSON في body مع Headers المصادقة
     const response = await fetch(
       "https://mohamed50mostafa.pythonanywhere.com/api/",
       {
@@ -974,7 +882,6 @@ async function sendMessage() {
       data.response ||
       "تم استلام الرد من الخادم بنجاح";
 
-    // إضافة رد البوت
     const botMessageId = conversationManager.addMessage(
       conversationManager.currentConversationId,
       botReply,
@@ -986,7 +893,6 @@ async function sendMessage() {
   } catch (err) {
     console.error("Error details:", err);
 
-    // رسائل خطأ أكثر وصفية
     if (err.name === "TypeError" && err.message.includes("Failed to fetch")) {
       const errorMsg =
         "⚠️ تعذر الاتصال بالخادم. يرجى التحقق من اتصال الإنترنت.";
@@ -1026,7 +932,6 @@ async function sendMessage() {
   }
 }
 
-// دالة إضافة الرسائل إلى الشاشة
 function addMessage(text, sender, scroll = true) {
   const msg = document.createElement("div");
   msg.classList.add("message", sender);
@@ -1040,10 +945,8 @@ function addMessage(text, sender, scroll = true) {
   return msg;
 }
 
-// زر الإرسال
 sendBtn.addEventListener("click", sendMessage);
 
-// إرسال Enter
 userInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     e.preventDefault();
@@ -1051,15 +954,12 @@ userInput.addEventListener("keypress", (e) => {
   }
 });
 
-// ======== لودر عند التحميل ========
 document.addEventListener("DOMContentLoaded", () => {
   document.body.classList.add("loading");
   const preloader = document.querySelector(".preloader");
 
-  // تحميل قائمة المحادثات فقط (بدون فتح أي محادثة تلقائياً)
   loadConversationsList();
 
-  // عرض رسالة الترحيب فقط (لا نفتح أي محادثة تلقائياً)
   conversationManager.displayWelcomeMessage();
 
   window.addEventListener("load", () => {
@@ -1070,16 +970,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// ======== مودال إنشاء محادثة جديدة ========
 const newChatBtn = document.querySelector(".new-chat-btn");
 
 newChatBtn.addEventListener("click", () => {
-  // إنشاء الخلفية
   const overlay = document.createElement("div");
   overlay.classList.add("overlay");
   overlay.style.display = "flex";
 
-  // إنشاء البوب أب
   const popup = document.createElement("div");
   popup.classList.add("popup");
 
@@ -1098,7 +995,6 @@ newChatBtn.addEventListener("click", () => {
   overlay.appendChild(popup);
   document.body.appendChild(overlay);
 
-  // التركيز على حقل الإدخال
   const chatNameInput = document.getElementById("chatNameInput");
   const charCount = document.getElementById("chatNameCount");
 
@@ -1106,7 +1002,6 @@ newChatBtn.addEventListener("click", () => {
     chatNameInput.focus();
   }, 100);
 
-  // تحديث عداد الأحرف
   chatNameInput.addEventListener("input", (e) => {
     const length = e.target.value.length;
     charCount.textContent = `${length}/100`;
@@ -1124,35 +1019,28 @@ newChatBtn.addEventListener("click", () => {
     }
   });
 
-  // زر الإغلاق (X)
   popup.querySelector(".close-modal").addEventListener("click", () => {
     overlay.remove();
   });
 
-  // زر الإلغاء
   popup.querySelector("#cancelChatBtn").addEventListener("click", () => {
     overlay.remove();
   });
 
-  // زر الحفظ
   popup.querySelector("#saveChatBtn").addEventListener("click", () => {
     const chatName = chatNameInput.value.trim();
     const name =
       chatName || `محادثة ${conversationManager.conversations.length + 1}`;
 
     try {
-      // إنشاء محادثة جديدة
       const newId = conversationManager.createConversation(name);
 
-      // تحميل قائمة المحادثات
       loadConversationsList();
 
-      // تحميل المحادثة الجديدة
       conversationManager.loadConversation(newId);
 
       overlay.remove();
 
-      // إغلاق السايدبار بعد إنشاء المحادثة (على الجوال)
       setTimeout(() => {
         if (window.innerWidth <= 768) {
           sidebar.classList.remove("open");
@@ -1164,14 +1052,12 @@ newChatBtn.addEventListener("click", () => {
     }
   });
 
-  // الضغط برة البوب أب يقفل
   overlay.addEventListener("click", (e) => {
     if (e.target === overlay) {
       overlay.remove();
     }
   });
 
-  // إرسال بالضغط على Enter
   chatNameInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
       popup.querySelector("#saveChatBtn").click();
@@ -1179,11 +1065,9 @@ newChatBtn.addEventListener("click", () => {
   });
 });
 
-// ======== وظيفة البحث عن المحادثات ========
 const searchBtn = document.querySelector('.icon[data-text="بحث عن المحادثات"]');
 
 searchBtn.addEventListener("click", () => {
-  // إنشاء نافذة البحث
   const overlay = document.createElement("div");
   overlay.classList.add("overlay");
   overlay.style.display = "flex";
@@ -1210,22 +1094,18 @@ searchBtn.addEventListener("click", () => {
   overlay.appendChild(popup);
   document.body.appendChild(overlay);
 
-  // التركيز على حقل البحث
   setTimeout(() => {
     document.getElementById("searchInput").focus();
   }, 100);
 
-  // زر الإغلاق (X)
   popup.querySelector(".close-modal").addEventListener("click", () => {
     overlay.remove();
   });
 
-  // زر الإغلاق
   popup.querySelector("#closeSearchBtn").addEventListener("click", () => {
     overlay.remove();
   });
 
-  // البحث أثناء الكتابة
   const searchInput = popup.querySelector("#searchInput");
   const searchResults = popup.querySelector("#searchResults");
 
@@ -1234,14 +1114,12 @@ searchBtn.addEventListener("click", () => {
     performSearch(query, searchResults);
   });
 
-  // الضغط برة البوب أب يقفل
   overlay.addEventListener("click", (e) => {
     if (e.target === overlay) {
       overlay.remove();
     }
   });
 
-  // إغلاق بالضغط على Escape
   document.addEventListener("keydown", function closeOnEscape(e) {
     if (e.key === "Escape") {
       overlay.remove();
@@ -1250,7 +1128,6 @@ searchBtn.addEventListener("click", () => {
   });
 });
 
-// دالة تنفيذ البحث وعرض النتائج مع إمكانية التنقل للمكان المحدد
 function performSearch(query, resultsContainer) {
   resultsContainer.innerHTML = "";
 
@@ -1272,7 +1149,6 @@ function performSearch(query, resultsContainer) {
     const resultItem = document.createElement("div");
     resultItem.classList.add("search-result-item");
 
-    // البحث عن جميع الرسائل المطابقة
     const matchingMessages = conversation.messages.filter((msg) =>
       msg.text.toLowerCase().includes(query.toLowerCase())
     );
@@ -1294,18 +1170,15 @@ function performSearch(query, resultsContainer) {
     `;
 
     resultItem.addEventListener("click", () => {
-      // حفظ نتائج البحث للمحادثة الحالية
       conversationManager.currentSearchResults = matchingMessages;
       conversationManager.currentSearchIndex = 0;
 
-      // تحميل المحادثة مع التمرير لأول نتيجة
       conversationManager.loadConversation(
         conversation.id,
         matchingMessages[0]?.messageId,
         query
       );
 
-      // إظهار أدوات التنقل إذا كان هناك أكثر من نتيجة
       if (matchingMessages.length > 1) {
         showSearchNavigation(conversation.id, matchingMessages, 0, query);
       }
@@ -1322,32 +1195,26 @@ function performSearch(query, resultsContainer) {
   });
 }
 
-// دالة لتظليل النص المطابق في المعاينة
 function highlightText(text, query) {
   const regex = new RegExp(`(${query})`, "gi");
   return text.replace(regex, '<mark class="search-highlight">$1</mark>');
 }
 
-// دالة للتمرير إلى رسالة محددة وتظليل النص المطلوب
 function scrollToMessage(messageId, searchQuery) {
   const messageElement = document.querySelector(
     `[data-message-id="${messageId}"]`
   );
 
   if (messageElement) {
-    // التمرير إلى الرسالة
     messageElement.scrollIntoView({
       behavior: "smooth",
       block: "center",
     });
 
-    // إضافة تأثير تمييز مؤقت
     messageElement.classList.add("search-result-message");
 
-    // تظليل النص المطلوب داخل الرسالة
     highlightTextInMessage(messageElement, searchQuery);
 
-    // إزالة التمييز بعد فترة
     setTimeout(() => {
       messageElement.classList.remove("search-result-message");
       removeHighlightFromMessage(messageElement);
@@ -1355,7 +1222,6 @@ function scrollToMessage(messageId, searchQuery) {
   }
 }
 
-// دالة لتظليل النص داخل الرسالة
 function highlightTextInMessage(messageElement, query) {
   const text = messageElement.textContent;
   const regex = new RegExp(`(${query})`, "gi");
@@ -1364,37 +1230,30 @@ function highlightTextInMessage(messageElement, query) {
     '<mark class="message-highlight">$1</mark>'
   );
 
-  // حفظ النص الأصلي كخاصية مخصصة
   messageElement.dataset.originalText = text;
 
-  // استبدال النص بالنص المظلل
   messageElement.innerHTML = highlightedText;
 
-  // إعادة إضافة أزرار الرسالة
   const messageId = messageElement.dataset.messageId;
   addMessageActions(messageElement, messageId);
 }
 
-// دالة لإزالة التظليل من الرسالة
 function removeHighlightFromMessage(messageElement) {
   const originalText = messageElement.dataset.originalText;
   if (originalText) {
     messageElement.textContent = originalText;
 
-    // إعادة إضافة أزرار الرسالة
     const messageId = messageElement.dataset.messageId;
     addMessageActions(messageElement, messageId);
   }
 }
 
-// دالة لإظهار أدوات التنقل بين النتائج
 function showSearchNavigation(
   conversationId,
   matchingMessages,
   currentIndex = 0,
   searchQuery = ""
 ) {
-  // إزالة أدوات التنقل الحالية إذا كانت موجودة
   const existingNav = document.querySelector(".search-navigation");
   if (existingNav) {
     existingNav.remove();
@@ -1427,7 +1286,6 @@ function showSearchNavigation(
 
   document.querySelector(".chat-area").appendChild(nav);
 
-  // أحداث الأزرار
   nav.querySelector(".prev-btn").addEventListener("click", () => {
     if (currentIndex > 0) {
       const newIndex = currentIndex - 1;
@@ -1456,7 +1314,6 @@ function showSearchNavigation(
 
   nav.querySelector(".close-btn").addEventListener("click", () => {
     nav.remove();
-    // إزالة التظليل من جميع الرسائل
     document.querySelectorAll(".search-result-message").forEach((msg) => {
       msg.classList.remove("search-result-message");
       removeHighlightFromMessage(msg);
@@ -1464,7 +1321,6 @@ function showSearchNavigation(
   });
 }
 
-// اختبار الاتصال عند تحميل الصفحة
 window.addEventListener("load", async () => {
   try {
     const response = await fetch(
@@ -1491,7 +1347,6 @@ window.addEventListener("load", async () => {
   }
 });
 
-// إضافة أنيميشن للإشعارات
 const style = document.createElement("style");
 style.textContent = `
   @keyframes slideIn {
@@ -1506,8 +1361,6 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// ==============================
-// تحديث البروفايل عند تحميل الصفحة
 function updateUserProfile() {
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
@@ -1524,19 +1377,16 @@ function updateUserProfile() {
       if (userData.profilePicture) {
         profileImage.src = userData.profilePicture;
 
-        // معالجة خطأ تحميل الصورة
         profileImage.onerror = function () {
           console.log("فشل تحميل صورة البروفايل، استخدام الصورة الافتراضية");
           this.src = createDefaultAvatar(userData.fullName || "U");
-          this.onerror = null; // منع loop الأخطاء
+          this.onerror = null;
         };
       } else {
-        // إذا لم توجد صورة، إنشاء صورة افتراضية
         profileImage.src = createDefaultAvatar(userData.fullName || "U");
       }
     }
 
-    // إخفاء زر التسجيل وإظهار خيار تسجيل الخروج
     const loginButton = document.querySelector('.icon[data-action="login"]');
     const logoutButton = document.querySelector('.icon[data-action="logout"]');
 
@@ -1545,7 +1395,6 @@ function updateUserProfile() {
   }
 }
 
-// دالة إنشاء صورة افتراضية
 function createDefaultAvatar(name) {
   try {
     const canvas = document.createElement("canvas");
@@ -1553,23 +1402,19 @@ function createDefaultAvatar(name) {
     canvas.height = 200;
     const ctx = canvas.getContext("2d");
 
-    // خلفية عشوائية من ألوان التطبيق
     const colors = ["#2ba8d9", "#d15425", "#ec6f50", "#2a93b0", "#c15516"];
     const bgColor = colors[Math.floor(Math.random() * colors.length)];
 
-    // رسم خلفية دائرية
     ctx.fillStyle = bgColor;
     ctx.beginPath();
     ctx.arc(100, 100, 90, 0, 2 * Math.PI);
     ctx.fill();
 
-    // إعداد النص
     ctx.fillStyle = "#FFFFFF";
     ctx.font = 'bold 70px "Tajawal", Arial, sans-serif';
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
 
-    // الحصول على الحروف الأولى من الاسم
     const initials = name
       .split(" ")
       .map((word) => word[0])
@@ -1577,30 +1422,25 @@ function createDefaultAvatar(name) {
       .toUpperCase()
       .substring(0, 2);
 
-    // رسم الحروف في المركز
     ctx.fillText(initials, 100, 100);
 
     return canvas.toDataURL();
   } catch (error) {
     console.error("خطأ في إنشاء الصورة الافتراضية:", error);
-    // استخدام صورة افتراضية بسيطة كبديل
     return "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9IjkwIiBmaWxsPSIjMmJhOGQ5Ii8+PHRleHQgeD0iMTAwIiB5PSIxMjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSI4MCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPs6/PC90ZXh0Pjwvc3ZnPg==";
   }
 }
 
-// تسجيل الخروج
 function logout() {
   localStorage.setItem("isLoggedIn", "false");
   localStorage.removeItem("currentUser");
   window.location.href = "../account/login/login.html";
 }
 
-// التحقق من حالة التسجيل عند تحميل الصفحة
 document.addEventListener("DOMContentLoaded", function () {
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const currentPath = window.location.pathname;
 
-  // قائمة الصفحات المسموح الوصول إليها بدون تسجيل دخول
   const allowedPages = [
     "/account/login/login.html",
     "/account/create-account/create-account.html",
@@ -1619,23 +1459,214 @@ document.addEventListener("DOMContentLoaded", function () {
     updateUserProfile();
   }
 
-  // إضافة حدث لتسجيل الخروج
   const logoutBtn = document.querySelector('.icon[data-action="logout"]');
   if (logoutBtn) {
     logoutBtn.addEventListener("click", logout);
   }
 
-  // تحديث البروفايل أيضاً عند حدث load للتأكد
   window.addEventListener("load", function () {
     if (isLoggedIn) {
-      setTimeout(updateUserProfile, 100); // تأخير بسيط لضمان تحميل DOM
+      setTimeout(updateUserProfile, 100);
     }
   });
 });
 
-// أيضًا تحديث البروفايل عند تغيير حالة localStorage (للتحديثات بين Tabs)
 window.addEventListener("storage", function (e) {
   if (e.key === "currentUser" || e.key === "isLoggedIn") {
     updateUserProfile();
   }
 });
+function shareMessage(messageElement) {
+  const text = messageElement.textContent || messageElement.innerText;
+
+  const overlay = document.createElement("div");
+  overlay.classList.add("overlay");
+  overlay.style.display = "flex";
+
+  const popup = document.createElement("div");
+  popup.classList.add("popup", "share-popup");
+  popup.style.width = "400px";
+
+  popup.innerHTML = `
+    <span class="close-modal">&times;</span>
+    <h3><i class="fas fa-share-alt"></i> مشاركة الرسالة</h3>
+    <div class="share-content">
+      <div class="message-preview">
+        <p>${text}</p>
+      </div>
+      <div class="share-options">
+        <h4>اختر طريقة المشاركة:</h4>
+        <div class="share-buttons">
+          <button class="share-option-btn" data-method="copy">
+            <i class="far fa-copy"></i>
+            <span>نسخ النص</span>
+          </button>
+          <button class="share-option-btn" data-method="twitter">
+            <i class="fab fa-twitter"></i>
+            <span>تويتر</span>
+          </button>
+          <button class="share-option-btn" data-method="whatsapp">
+            <i class="fab fa-whatsapp"></i>
+            <span>واتساب</span>
+          </button>
+          <button class="share-option-btn" data-method="telegram">
+            <i class="fab fa-telegram"></i>
+            <span>تيليجرام</span>
+          </button>
+          <button class="share-option-btn" data-method="facebook">
+            <i class="fab fa-facebook"></i>
+            <span>فيسبوك</span>
+          </button>
+          <button class="share-option-btn" data-method="download">
+            <i class="fas fa-download"></i>
+            <span>تحميل كملف</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  overlay.appendChild(popup);
+  document.body.appendChild(overlay);
+
+  setTimeout(() => {
+    popup.querySelector(".share-option-btn").focus();
+  }, 100);
+
+  popup.querySelector(".close-modal").addEventListener("click", () => {
+    overlay.remove();
+  });
+
+  const shareButtons = popup.querySelectorAll(".share-option-btn");
+  shareButtons.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const method = e.currentTarget.dataset.method;
+      handleShareMethod(method, text, messageElement);
+      overlay.remove();
+    });
+  });
+
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) {
+      overlay.remove();
+    }
+  });
+
+  document.addEventListener("keydown", function closeOnEscape(e) {
+    if (e.key === "Escape") {
+      overlay.remove();
+      document.removeEventListener("keydown", closeOnEscape);
+    }
+  });
+}
+
+function handleShareMethod(method, text, messageElement) {
+  const shareUrl = encodeURIComponent(window.location.href);
+  const shareText = encodeURIComponent(text);
+
+  switch (method) {
+    case "copy":
+      navigator.clipboard
+        .writeText(text)
+        .then(() => {
+          showCopyNotification("تم نسخ الرسالة بنجاح");
+          messageElement.classList.add("message-shared");
+          setTimeout(() => {
+            messageElement.classList.remove("message-shared");
+          }, 1000);
+        })
+        .catch((err) => {
+          console.error("فشل في النسخ: ", err);
+          showCopyNotification("فشل في نسخ الرسالة");
+        });
+      break;
+
+    case "twitter":
+      window.open(
+        `https://twitter.com/intent/tweet?text=${shareText}`,
+        "_blank"
+      );
+      break;
+
+    case "whatsapp":
+      window.open(`https://wa.me/?text=${shareText}`, "_blank");
+      break;
+
+    case "telegram":
+      window.open(
+        `https://t.me/share/url?url=${shareUrl}&text=${shareText}`,
+        "_blank"
+      );
+      break;
+
+    case "facebook":
+      window.open(
+        `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}&quote=${shareText}`,
+        "_blank"
+      );
+      break;
+
+    case "download":
+      downloadAsFile(text);
+      break;
+  }
+}
+
+function downloadAsFile(text) {
+  const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `رسالة-${new Date().toISOString().split("T")[0]}.txt`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+
+  showCopyNotification("تم تحميل الرسالة بنجاح");
+}
+function addMessageActions(messageElement, messageId = null) {
+  const existingActions = messageElement.querySelector(".message-actions");
+  if (existingActions) {
+    existingActions.remove();
+  }
+
+  const messageActions = document.createElement("div");
+  messageActions.className = "message-actions";
+
+  const copyBtn = document.createElement("button");
+  copyBtn.className = "message-action-btn copy-btn";
+  copyBtn.innerHTML = '<i class="far fa-copy"></i>';
+  copyBtn.title = "نسخ الرسالة";
+  copyBtn.onclick = (e) => {
+    e.stopPropagation();
+    copyMessageText(messageElement);
+  };
+
+  const shareBtn = document.createElement("button");
+  shareBtn.className = "message-action-btn share-btn";
+  shareBtn.innerHTML = '<i class="fas fa-share-alt"></i>';
+  shareBtn.title = "مشاركة الرسالة";
+  shareBtn.onclick = (e) => {
+    e.stopPropagation();
+    shareMessage(messageElement);
+  };
+
+  messageActions.appendChild(copyBtn);
+  messageActions.appendChild(shareBtn);
+
+  if (messageElement.classList.contains("user")) {
+    const editBtn = document.createElement("button");
+    editBtn.className = "message-action-btn edit-btn";
+    editBtn.innerHTML = '<i class="far fa-edit"></i>';
+    editBtn.title = "تعديل الرسالة";
+    editBtn.onclick = (e) => {
+      e.stopPropagation();
+      editMessage(messageElement);
+    };
+
+    messageActions.appendChild(editBtn);
+  }
+
+  messageElement.appendChild(messageActions);
+}

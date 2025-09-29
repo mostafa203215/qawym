@@ -1004,7 +1004,7 @@ body.loading {
   }
   .chat-area {
     width: 100%;
-    padding-top: 70px; 
+    padding-top: 70px;
   }
 
   .hamburger {
@@ -1167,4 +1167,163 @@ body.loading {
   .confirm-popup strong {
     max-width: 150px;
   }
+}
+/* أنماط نافذة المشاركة */
+.share-popup {
+  width: 450px !important;
+  max-width: 90vw;
+}
+
+.share-popup h3 {
+  color: #2ba8d9;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.share-popup h3 i {
+  color: #ec6f50;
+}
+
+.share-content {
+  text-align: center;
+}
+
+.message-preview {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+  max-height: 150px;
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.message-preview p {
+  color: #e3f7ff;
+  line-height: 1.5;
+  margin: 0;
+  text-align: right;
+  font-weight: 500;
+}
+
+.share-options h4 {
+  color: #fff;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.share-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.share-option-btn {
+  background: linear-gradient(135deg, #2ba8d9, #1e6f91);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 12px 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  min-height: 70px;
+}
+
+.share-option-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(43, 168, 217, 0.4);
+  background: linear-gradient(135deg, #ec6f50, #d15425);
+}
+
+.share-option-btn i {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.share-option-btn span {
+  font-weight: 500;
+}
+
+/* تأثير عند المشاركة */
+.message-shared {
+  animation: sharePulse 1s ease;
+}
+
+@keyframes sharePulse {
+  0% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: rgba(43, 168, 217, 0.3);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+/* تحسينات للعرض على الجوال */
+@media (max-width: 768px) {
+  .share-popup {
+    width: 95% !important;
+    margin: 0 2.5%;
+  }
+
+  .share-buttons {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .share-option-btn {
+    min-height: 60px;
+    padding: 10px 12px;
+    font-size: 11px;
+  }
+
+  .share-option-btn i {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .share-popup {
+    width: 98% !important;
+    margin: 0 1%;
+    padding: 15px;
+  }
+
+  .share-buttons {
+    grid-template-columns: 1fr;
+  }
+} /* تحسينات إضافية لأزرار الرسائل */
+.message-action-btn.share-btn {
+  background: rgba(50, 52, 53, 0.705);
+}
+
+.message-action-btn.share-btn:hover {
+  background: #2ba8d9;
+  transform: scale(1.1);
+}
+
+.message-actions {
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.message-action-btn {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.message-action-btn:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transform: translateY(-1px);
 }

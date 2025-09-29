@@ -4,27 +4,30 @@ document.addEventListener("DOMContentLoaded", function () {
   const passwordInput = document.getElementById("password");
   const loadingOverlay = document.getElementById("loadingOverlay");
   const messageArea = document.getElementById("messageArea");
+  const emailInput = document.getElementById("email");
+  const rememberMeInput = document.getElementById("rememberMe");
 
+  // 👁️‍🗨️ إظهار/إخفاء كلمة المرور
   togglePassword.addEventListener("click", function () {
-    const type =
-      passwordInput.getAttribute("type") === "password" ? "text" : "password";
-    passwordInput.setAttribute("type", type);
-    this.innerHTML =
-      type === "password"
-        ? '<i class="fas fa-eye"></i>'
-        : '<i class="fas fa-eye-slash"></i>';
+    const isPassword = passwordInput.type === "password";
+    passwordInput.type = isPassword ? "text" : "password";
+    this.innerHTML = isPassword
+      ? '<i class="fas fa-eye-slash"></i>'
+      : '<i class="fas fa-eye"></i>';
   });
 
+  // 📌 عند الضغط على تسجيل الدخول
   loginForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const rememberMe = document.getElementById("rememberMe").checked;
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+    const rememberMe = rememberMeInput.checked;
 
     hideMessage();
     clearFieldErrors();
 
+    // ✅ التحقق من صحة البيانات
     if (!validateEmail(email)) {
       showFieldError("email", "البريد الإلكتروني غير صحيح");
       return;
@@ -35,32 +38,34 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
+    // ⏳ عرض التحميل
     loadingOverlay.style.display = "flex";
 
-    setTimeout(() => {
-      simulateLogin(email, password, rememberMe);
-    }, 2000);
+    // 🚀 تسجيل الدخول عبر API
+    loginWithAPI(email, password, rememberMe);
   });
 
+  // 🎯 التحقق من البريد الإلكتروني
   function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
   }
 
+  // 📢 عرض رسالة
   function showMessage(message, type = "error") {
     messageArea.textContent = message;
     messageArea.className = `message-area ${type}`;
     messageArea.style.display = "block";
 
-    setTimeout(() => {
-      hideMessage();
-    }, 5000);
+    setTimeout(hideMessage, 5000);
   }
 
+  // 📴 إخفاء الرسائل
   function hideMessage() {
     messageArea.style.display = "none";
   }
 
+  // ❌ عرض خطأ عند الحقل
   function showFieldError(fieldId, message) {
     const field = document.getElementById(fieldId);
     const formGroup = field.closest(".form-group");
@@ -78,48 +83,68 @@ document.addEventListener("DOMContentLoaded", function () {
     field.focus();
   }
 
+  // 🧹 مسح الأخطاء
   function clearFieldErrors() {
     document.querySelectorAll(".error-text").forEach((el) => el.remove());
-
-    document.querySelectorAll(".form-group.error").forEach((el) => {
-      el.classList.remove("error");
-    });
+    document
+      .querySelectorAll(".form-group.error")
+      .forEach((el) => el.classList.remove("error"));
   }
 
-  function simulateLogin(email, password, rememberMe) {
+  // 🔐 تسجيل الدخول باستخدام API
+  async function loginWithAPI(email, password, rememberMe) {
+    try {
+      const response = await fetch(
+        "https://mohamed50mostafa.pythonanywhere.com/dj-rest-auth/login/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
-    const existingUsers = JSON.parse(
-      localStorage.getItem("registeredUsers") || "[]"
-    );
-    const user = existingUsers.find(
-      (u) => u.email === email && u.password === password
-    );
+      const data = await response.json();
 
-    if (user) {
+      if (!response.ok) {
+        throw new Error(
+          data.non_field_errors?.[0] ||
+            data.detail ||
+            "حدث خطأ أثناء تسجيل الدخول"
+        );
+      }
+
+      // ✅ نجاح
       if (rememberMe) {
         localStorage.setItem("userEmail", email);
         localStorage.setItem("rememberMe", "true");
+      } else {
+        localStorage.removeItem("userEmail");
+        localStorage.removeItem("rememberMe");
       }
 
-      localStorage.setItem("currentUser", JSON.stringify(user));
+      // تخزين الـ Token أو بيانات المستخدم
+      localStorage.setItem("token", data.key);
       localStorage.setItem("isLoggedIn", "true");
 
-      showMessage("تم تسجيل الدخول بنجاح! جاري التوجيه...", "success");
+      showMessage("✅ تم تسجيل الدخول بنجاح! جاري التوجيه...", "success");
 
       setTimeout(() => {
         window.location.href = "../../qawim_ai/index.html";
       }, 1500);
-    } else {
+    } catch (error) {
       loadingOverlay.style.display = "none";
-      showMessage("البريد الإلكتروني أو كلمة المرور غير صحيحة");
+      showMessage(error.message, "error");
     }
   }
 
+  // 📌 تحميل البريد المحفوظ لو موجود
   if (localStorage.getItem("rememberMe") === "true") {
     const savedEmail = localStorage.getItem("userEmail");
     if (savedEmail) {
-      document.getElementById("email").value = savedEmail;
-      document.getElementById("rememberMe").checked = true;
+      emailInput.value = savedEmail;
+      rememberMeInput.checked = true;
     }
   }
 });

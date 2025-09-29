@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const uploadBtn = document.getElementById("uploadBtn");
   const loadingOverlay = document.getElementById("loadingOverlay");
 
+  // إظهار/إخفاء كلمة المرور
   togglePassword.addEventListener("click", function () {
     const type =
       passwordInput.getAttribute("type") === "password" ? "text" : "password";
@@ -36,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
         : '<i class="fas fa-eye-slash"></i>';
   });
 
+  // رفع صورة البروفايل
   uploadBtn.addEventListener("click", function () {
     profilePictureInput.click();
   });
@@ -77,6 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  // السحب والإفلات للصور
   profilePreviewContainer.addEventListener("dragover", function (e) {
     e.preventDefault();
     this.style.borderColor = "#2ba8d9";
@@ -101,6 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  // عند التسجيل
   registerForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -108,7 +112,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById("confirmPassword").value;
-    const agreeTerms = document.getElementById("agreeTerms").checked;
 
     if (!validateEmail(email)) {
       showError("البريد الإلكتروني غير صحيح");
@@ -124,42 +127,36 @@ document.addEventListener("DOMContentLoaded", function () {
       showError("كلمتا المرور غير متطابقتين");
       return;
     }
- 
-    const existingUsers = JSON.parse(
-      localStorage.getItem("registeredUsers") || "[]"
-    );
-    if (existingUsers.find((user) => user.email === email)) {
-      showError("هذا البريد الإلكتروني مسجل بالفعل");
-      return;
-    }
 
     loadingOverlay.style.display = "flex";
 
     setTimeout(() => {
       createAccount(fullName, email, password);
-    }, 2000);
+    }, 1000);
   });
 
+  // التحقق من الإيميل
   function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
   }
 
+  // إظهار رسالة خطأ
   function showError(message) {
     const errorDiv = document.createElement("div");
     errorDiv.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #ff6b6b;
-            color: white;
-            padding: 15px 20px;
-            border-radius: 10px;
-            z-index: 10000;
-            font-size: 14px;
-            animation: slideIn 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        `;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #ff6b6b;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 10px;
+      z-index: 10000;
+      font-size: 14px;
+      animation: slideIn 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    `;
     errorDiv.textContent = message;
     document.body.appendChild(errorDiv);
 
@@ -173,81 +170,62 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 3000);
   }
 
+  // إنشاء الحساب بالـ API
   function createAccount(fullName, email, password) {
-    let profilePicture = localStorage.getItem("tempProfilePicture");
-
-    if (!profilePicture) {
-      profilePicture = createDefaultAvatar(fullName);
-    }
-
-    const userData = {
-      fullName: fullName,
+    let apiData = {
+      username: fullName,
+      password: password,
       email: email,
-      profilePicture: profilePicture,
-      createdAt: new Date().toISOString(),
     };
 
-    const existingUsers = JSON.parse(
-      localStorage.getItem("registeredUsers") || "[]"
-    );
-    existingUsers.push({ ...userData, password: password });
-    localStorage.setItem("registeredUsers", JSON.stringify(existingUsers));
+    console.log("🚀 البيانات المرسلة للسيرفر:", JSON.stringify(apiData));
 
-    localStorage.setItem("currentUser", JSON.stringify(userData));
-    localStorage.setItem("isLoggedIn", "true");
+    fetch("https://mohamed50mostafa.pythonanywhere.com/api/register/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(apiData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          return response.text().then((text) => {
+            throw new Error("خطأ في الاستجابة: " + text);
+          });
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("✅ تم التسجيل:", data);
 
-    localStorage.removeItem("tempProfilePicture");
+        localStorage.setItem("authToken", data.token || "");
+        localStorage.setItem("currentUser", JSON.stringify(data.user || {}));
 
-    window.location.href = "../../qawim_ai/index.html";
+        window.location.href = "../../qawim_ai/index.html";
+      })
+      .catch((error) => {
+        console.error("❌ خطأ أثناء إنشاء الحساب:", error);
+        alert("حدث خطأ أثناء إنشاء الحساب: " + error.message);
+      });
   }
 
-  function createDefaultAvatar(name) {
-    const canvas = document.createElement("canvas");
-    canvas.width = 200;
-    canvas.height = 200;
-    const ctx = canvas.getContext("2d");
-
-    const colors = ["#2ba8d9", "#d15425", "#ec6f50", "#2a93b0", "#c15516"];
-    const bgColor = colors[Math.floor(Math.random() * colors.length)];
-
-    ctx.fillStyle = bgColor;
-    ctx.beginPath();
-    ctx.arc(100, 100, 90, 0, 2 * Math.PI);
-    ctx.fill();
-
-    ctx.fillStyle = "#FFFFFF";
-    ctx.font = 'bold 70px "Tajawal", Arial, sans-serif';
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-
-    const initials = name
-      .split(" ")
-      .map((word) => word[0])
-      .join("")
-      .toUpperCase()
-      .substring(0, 2);
-
-    ctx.fillText(initials, 100, 100);
-
-    return canvas.toDataURL();
-  }
-
+  // استرجاع صورة البروفايل لو متخزنة مؤقتًا
   const tempProfilePicture = localStorage.getItem("tempProfilePicture");
   if (tempProfilePicture) {
     profilePreview.src = tempProfilePicture;
   }
 
+  // أنيميشن للرسائل
   const style = document.createElement("style");
   style.textContent = `
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        
-        @keyframes slideOut {
-            from { transform: translateX(0); opacity: 1; }
-            to { transform: translateX(100%); opacity: 0; }
-        }
-    `;
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideOut {
+      from { transform: translateX(0); opacity: 1; }
+      to { transform: translateX(100%); opacity: 0; }
+    }
+  `;
   document.head.appendChild(style);
 });

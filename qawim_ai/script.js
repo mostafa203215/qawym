@@ -475,7 +475,7 @@ async function sendEditedMessage(text) {
 
   try {
     const response = await fetch(
-      "https://mohamed50mostafa.pythonanywhere.com/api/",
+      "https://mohamed50mostafa.pythonanywhere.com/api/messages",
       {
         method: "POST",
         headers: {
@@ -517,7 +517,7 @@ async function sendEditedMessage(text) {
 
     if (err.name === "TypeError" && err.message.includes("Failed to fetch")) {
       const errorMsg =
-        "⚠️ تعذر الاتصال بالخادم. يرجى التحقق من اتصال الإنترنت.";
+        "⚠️ تعذر الاتصال بالخادم. يمكنك استخدامhttps://mohamed50mostafa.pythonanywhere.com/api/messages مباشرة من هنا  ";
       const errorMessageId = conversationManager.addMessage(
         conversationManager.currentConversationId,
         errorMsg,
@@ -853,7 +853,7 @@ async function sendMessage() {
 
   try {
     const response = await fetch(
-      "https://mohamed50mostafa.pythonanywhere.com/api/",
+      "https://mohamed50mostafa.pythonanywhere.com/api/messages",
       {
         method: "POST",
         headers: {
@@ -895,7 +895,7 @@ async function sendMessage() {
 
     if (err.name === "TypeError" && err.message.includes("Failed to fetch")) {
       const errorMsg =
-        "⚠️ تعذر الاتصال بالخادم. يرجى التحقق من اتصال الإنترنت.";
+        "⚠️ تعذر الاتصال بالخادم نحن نعمل جاهدين لحل هذه المشكله يمكنك استخدام قويم عبر mohamed50mostafa.pythonanywhere/api/ messages";
       const errorMessageId = conversationManager.addMessage(
         conversationManager.currentConversationId,
         errorMsg,
@@ -1324,7 +1324,7 @@ function showSearchNavigation(
 window.addEventListener("load", async () => {
   try {
     const response = await fetch(
-      "https://mohamed50mostafa.pythonanywhere.com/api/",
+      "https://mohamed50mostafa.pythonanywhere.com/api/messages",
       {
         method: "POST",
         headers: {

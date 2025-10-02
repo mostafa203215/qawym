@@ -509,7 +509,8 @@ body.loading {
 .message.bot .message-actions {
   left: auto;
   right: 0;
-  top: 40px;
+  top: 100%;
+  margin-top: -10px;
 }
 
 .message.bot .edit-btn {

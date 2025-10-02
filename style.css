@@ -459,6 +459,7 @@ body.hide-scroll {
 .footer-links-grid a:hover {
   color: #00c8ff;
   padding-right: 5px;
+  transform: scale(1.05);
 }
 
 .social-links {
@@ -761,11 +762,6 @@ body.hide-scroll {
   color: #ccc;
   text-decoration: none;
   transition: all 0.3s ease;
-}
-
-.footer-links-grid a:hover {
-  color: var(--main-color);
-  transform: scale(1.05);
 }
 
 @media (max-width: 768px) {

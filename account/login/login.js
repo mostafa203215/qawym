@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       // تخزين الـ Token أو بيانات المستخدم
-      localStorage.setItem("token", data.key);
+      localStorage.setItem("authToken", data.key);
       localStorage.setItem("isLoggedIn", "true");
 
       showMessage("✅ تم تسجيل الدخول بنجاح! جاري التوجيه...", "success");

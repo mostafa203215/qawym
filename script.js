@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
     { src: "./videos/مساعد ذكي.mp4", text: "مساعد ذكي" },
     { src: "./videos/تعزيز القيم.mp4", text: "تعزيز القيم" },
     { src: "./videos/رحلة رقمية متوازنة.mp4", text: "رحلة رقمية متوازنة" },
-    { src: "./videos/test.mp4", text: "test" },
   ];
 
   let currentIndex = 0;

@@ -14,7 +14,6 @@ hamburger.addEventListener("click", (e) => {
       ? "block"
       : "none";
 });
-
 mobileHamburger.addEventListener("click", () => {
   sidebar.classList.add("open");
   sidebarOverlay.style.display = "block";
@@ -51,6 +50,7 @@ class ConversationManager {
     this.currentConversationId = null;
     this.currentSearchResults = null;
     this.currentSearchIndex = 0;
+    this.serverChatIdMap = new Map();
   }
 
   generateId() {
@@ -69,7 +69,7 @@ class ConversationManager {
     );
   }
 
-  createConversation(name) {
+  createConversation(name, serverChatId = null) {
     const trimmedName = name
       ? name.trim()
       : `محادثة ${this.conversations.length + 1}`;
@@ -78,20 +78,43 @@ class ConversationManager {
       throw new Error("اسم المحادثة لا يمكن أن يتجاوز 100 حرف");
     }
 
+    const localId = this.generateId();
     const newConversation = {
-      id: this.generateId(),
+      id: localId,
       name: trimmedName,
       messages: [],
       createdAt: new Date().toISOString(),
+      serverChatId: serverChatId,
     };
 
     this.conversations.unshift(newConversation);
     this.saveConversations();
-    return newConversation.id;
+
+    if (serverChatId) {
+      this.serverChatIdMap.set(localId, serverChatId);
+    }
+
+    return localId;
   }
 
   getConversation(id) {
     return this.conversations.find((conv) => conv.id === id);
+  }
+
+  getServerChatId(localId) {
+    const conversation = this.getConversation(localId);
+    return conversation?.serverChatId || null;
+  }
+
+  updateServerChatId(localId, serverChatId) {
+    const conversation = this.getConversation(localId);
+    if (conversation) {
+      conversation.serverChatId = serverChatId;
+      this.serverChatIdMap.set(localId, serverChatId);
+      this.updateConversation(localId, { serverChatId: serverChatId });
+      return true;
+    }
+    return false;
   }
 
   updateConversation(id, updates) {
@@ -144,6 +167,7 @@ class ConversationManager {
 
   deleteConversation(id) {
     this.conversations = this.conversations.filter((conv) => conv.id !== id);
+    this.serverChatIdMap.delete(id);
     this.saveConversations();
 
     if (this.currentConversationId === id) {
@@ -309,50 +333,93 @@ const conversationList = document.getElementById("conversationList");
 let waitingBot = false;
 
 const API_CONFIG = {
-  token: "test1",
-  name: "test1",
+  token: null,
   contentType: "application/json",
+  apiUrl: "https://mohamed50mostafa.pythonanywhere.com/api/messages/",
+  chatsUrl: "https://mohamed50mostafa.pythonanywhere.com/api/chats/",
 };
 
-function copyMessageText(messageElement) {
-  const text = messageElement.textContent || messageElement.innerText;
+function getAuthToken() {
+  let token = localStorage.getItem("authToken");
 
-  navigator.clipboard
-    .writeText(text)
-    .then(() => {
-      messageElement.classList.add("message-copied");
-      setTimeout(() => {
-        messageElement.classList.remove("message-copied");
-      }, 500);
+  if (token && token !== "YOUR_AUTH_TOKEN_HERE") {
+    return token;
+  }
 
-      showCopyNotification("تم نسخ الرسالة");
-    })
-    .catch((err) => {
-      console.error("فشل في نسخ النص: ", err);
-      showCopyNotification("فشل في نسخ الرسالة");
-    });
+  token = prompt(
+    `الرجاء إدخال رمز التوثيق (Token) الخاص بك:
+
+يمكنك الحصول على التوكن من:
+1. لوحة تحكم الموقع
+2. إعدادات حسابك
+3. التواصل مع مسؤول النظام
+
+ملاحظة: هذا التوكن مطلوب للاتصال بخادم الذكاء الاصطناعي.`,
+    ""
+  );
+
+  if (token && token.trim()) {
+    token = token.trim();
+    localStorage.setItem("authToken", token);
+    showNotification("تم حفظ رمز التوثيق بنجاح!", "success");
+    return token;
+  } else {
+    throw new Error(
+      "لم يتم إدخال رمز التوثيق. يرجى تحديث الصفحة والمحاولة مرة أخرى عندما تكون جاهزاً."
+    );
+  }
 }
 
-function showCopyNotification(message) {
-  const existingNotification = document.querySelector(".copy-notification");
+async function createServerChat(chatName = null) {
+  const token = getAuthToken();
+
+  const response = await fetch(API_CONFIG.chatsUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": API_CONFIG.contentType,
+      Authorization: `Token ${token}`,
+    },
+    body: JSON.stringify({
+      title: chatName || `محادثة جديدة ${new Date().toLocaleString()}`,
+    }),
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(
+      `فشل في إنشاء المحادثة على الخادم: ${response.status} - ${errorText}`
+    );
+  }
+
+  const data = await response.json();
+  return data.id;
+}
+
+function showNotification(message, type = "info") {
+  const existingNotification = document.querySelector(".custom-notification");
   if (existingNotification) {
     existingNotification.remove();
   }
 
   const notification = document.createElement("div");
-  notification.className = "copy-notification";
+  notification.className = `custom-notification ${type}`;
   notification.textContent = message;
   notification.style.cssText = `
     position: fixed;
     top: 20px;
     right: 20px;
-    background: #2ba8d9;
+    background: ${
+      type === "success" ? "#4CAF50" : type === "error" ? "#f44336" : "#2196F3"
+    };
     color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 15px 25px;
+    border-radius: 8px;
     z-index: 10000;
     font-size: 14px;
     animation: slideIn 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    max-width: 400px;
+    word-wrap: break-word;
   `;
 
   document.body.appendChild(notification);
@@ -366,7 +433,26 @@ function showCopyNotification(message) {
         }
       }, 300);
     }
-  }, 2000);
+  }, 4000);
+}
+
+function copyMessageText(messageElement) {
+  const text = messageElement.textContent || messageElement.innerText;
+
+  navigator.clipboard
+    .writeText(text)
+    .then(() => {
+      messageElement.classList.add("message-copied");
+      setTimeout(() => {
+        messageElement.classList.remove("message-copied");
+      }, 500);
+
+      showNotification("تم نسخ الرسالة", "success");
+    })
+    .catch((err) => {
+      console.error("فشل في نسخ النص: ", err);
+      showNotification("فشل في نسخ الرسالة", "error");
+    });
 }
 
 function editMessage(messageElement) {
@@ -474,34 +560,41 @@ async function sendEditedMessage(text) {
   sendBtn.disabled = true;
 
   try {
-    const response = await fetch(
-      "https://mohamed50mostafa.pythonanywhere.com/api/messages",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": API_CONFIG.contentType,
-          Authorization: `Token ${API_CONFIG.token}`,
-          "Web-Antennisrate": "Token",
-          Name: API_CONFIG.name,
-        },
-        body: JSON.stringify({
-          message: text,
-        }),
-      }
+    const token = getAuthToken();
+    const serverChatId = conversationManager.getServerChatId(
+      conversationManager.currentConversationId
     );
+
+    if (!serverChatId) {
+      throw new Error("لا يوجد معرف محادثة صالح على الخادم");
+    }
+
+    const response = await fetch(API_CONFIG.apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": API_CONFIG.contentType,
+        Authorization: `Token ${token}`,
+      },
+      body: JSON.stringify({
+        content: text,
+        chat_id: serverChatId,
+      }),
+    });
 
     if (!response.ok) {
       if (response.status === 401) {
-        throw new Error("خطأ في المصادقة: الرجاء التحقق من Token المصادقة");
+        localStorage.removeItem("authToken");
+        throw new Error("خطأ في المصادقة: الرجاء إدخال رمز توثيق صحيح");
       }
+      const errorText = await response.text();
+      console.error("Server Error Response:", errorText);
       throw new Error(`خطأ في الخادم: ${response.status}`);
     }
 
     const data = await response.json();
     const botReply =
-      data.reply ||
+      data.ai_message?.content ||
       data.message ||
-      data.response ||
       "تم استلام الرد من الخادم بنجاح";
 
     const botMessageId = conversationManager.addMessage(
@@ -515,38 +608,28 @@ async function sendEditedMessage(text) {
   } catch (err) {
     console.error("Error details:", err);
 
-    if (err.name === "TypeError" && err.message.includes("Failed to fetch")) {
-      const errorMsg =
-        "⚠️ تعذر الاتصال بالخادم. يمكنك استخدامhttps://mohamed50mostafa.pythonanywhere.com/api/messages مباشرة من هنا  ";
-      const errorMessageId = conversationManager.addMessage(
-        conversationManager.currentConversationId,
-        errorMsg,
-        "bot"
-      );
-      const errorElement = addMessage(errorMsg, "bot");
-      errorElement.dataset.messageId = errorMessageId;
-      addMessageActions(errorElement, errorMessageId);
-    } else if (err.message.includes("المصادقة")) {
-      const errorMsg = "🔐 " + err.message;
-      const errorMessageId = conversationManager.addMessage(
-        conversationManager.currentConversationId,
-        errorMsg,
-        "bot"
-      );
-      const errorElement = addMessage(errorMsg, "bot");
-      errorElement.dataset.messageId = errorMessageId;
-      addMessageActions(errorElement, errorMessageId);
+    let errorMsg = "⚠️ حدث خطأ غير متوقع";
+    if (err.message.includes("المصادقة")) {
+      errorMsg = "🔐 " + err.message;
+    } else if (
+      err.name === "TypeError" &&
+      err.message.includes("Failed to fetch")
+    ) {
+      errorMsg = "⚠️ تعذر الاتصال بالخادم. يرجى التحقق من اتصال الإنترنت.";
+    } else if (err.message.includes("معرف محادثة")) {
+      errorMsg = "⚠️ " + err.message + " يرجى إنشاء محادثة جديدة.";
     } else {
-      const errorMsg = "⚠️ " + err.message;
-      const errorMessageId = conversationManager.addMessage(
-        conversationManager.currentConversationId,
-        errorMsg,
-        "bot"
-      );
-      const errorElement = addMessage(errorMsg, "bot");
-      errorElement.dataset.messageId = errorMessageId;
-      addMessageActions(errorElement, errorMessageId);
+      errorMsg = "⚠️ " + err.message;
     }
+
+    const errorMessageId = conversationManager.addMessage(
+      conversationManager.currentConversationId,
+      errorMsg,
+      "bot"
+    );
+    const errorElement = addMessage(errorMsg, "bot");
+    errorElement.dataset.messageId = errorMessageId;
+    addMessageActions(errorElement, errorMessageId);
   } finally {
     waitingBot = false;
     sendBtn.disabled = false;
@@ -826,64 +909,83 @@ async function sendMessage() {
   const text = userInput.value.trim();
   if (!text) return;
 
-  if (!conversationManager.currentConversationId) {
-    const welcome = document.querySelector(".welcome");
-    if (welcome) welcome.style.display = "none";
-
-    const newId = conversationManager.createConversation(
-      `محادثة ${conversationManager.conversations.length + 1}`
-    );
-    conversationManager.currentConversationId = newId;
-    loadConversationsList();
-  }
-
-  const messageId = conversationManager.addMessage(
-    conversationManager.currentConversationId,
-    text,
-    "user"
-  );
-  const messageElement = addMessage(text, "user");
-  messageElement.dataset.messageId = messageId;
-  addMessageActions(messageElement, messageId);
-
-  userInput.value = "";
-
-  waitingBot = true;
-  sendBtn.disabled = true;
+  let currentConversationId = conversationManager.currentConversationId;
+  let serverChatId = null;
 
   try {
-    const response = await fetch(
-      "https://mohamed50mostafa.pythonanywhere.com/api/messages",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": API_CONFIG.contentType,
-          Authorization: `Token ${API_CONFIG.token}`,
-          "Web-Antennisrate": "Token",
-          Name: API_CONFIG.name,
-        },
-        body: JSON.stringify({
-          message: text,
-        }),
+    if (!currentConversationId) {
+      const welcome = document.querySelector(".welcome");
+      if (welcome) welcome.style.display = "none";
+
+      showNotification("جاري إنشاء محادثة جديدة على الخادم...", "info");
+
+      serverChatId = await createServerChat(
+        `محادثة ${conversationManager.conversations.length + 1}`
+      );
+
+      currentConversationId = conversationManager.createConversation(
+        `محادثة ${conversationManager.conversations.length + 1}`,
+        serverChatId
+      );
+      conversationManager.currentConversationId = currentConversationId;
+      loadConversationsList();
+    } else {
+      serverChatId = conversationManager.getServerChatId(currentConversationId);
+
+      if (!serverChatId) {
+        serverChatId = await createServerChat();
+        conversationManager.updateServerChatId(
+          currentConversationId,
+          serverChatId
+        );
       }
+    }
+
+    const messageId = conversationManager.addMessage(
+      currentConversationId,
+      text,
+      "user"
     );
+    const messageElement = addMessage(text, "user");
+    messageElement.dataset.messageId = messageId;
+    addMessageActions(messageElement, messageId);
+
+    userInput.value = "";
+    waitingBot = true;
+    sendBtn.disabled = true;
+
+    const token = getAuthToken();
+
+    const response = await fetch(API_CONFIG.apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": API_CONFIG.contentType,
+        Authorization: `Token ${token}`,
+      },
+      body: JSON.stringify({
+        content: text,
+        chat_id: serverChatId,
+      }),
+    });
 
     if (!response.ok) {
       if (response.status === 401) {
-        throw new Error("خطأ في المصادقة: الرجاء التحقق من Token المصادقة");
+        localStorage.removeItem("authToken");
+        throw new Error("خطأ في المصادقة: الرجاء إدخال رمز توثيق صحيح");
       }
+      const errorText = await response.text();
+      console.error("Server Error Response:", errorText);
       throw new Error(`خطأ في الخادم: ${response.status}`);
     }
 
     const data = await response.json();
     const botReply =
-      data.reply ||
+      data.ai_message?.content ||
       data.message ||
-      data.response ||
       "تم استلام الرد من الخادم بنجاح";
 
     const botMessageId = conversationManager.addMessage(
-      conversationManager.currentConversationId,
+      currentConversationId,
       botReply,
       "bot"
     );
@@ -893,21 +995,23 @@ async function sendMessage() {
   } catch (err) {
     console.error("Error details:", err);
 
-    if (err.name === "TypeError" && err.message.includes("Failed to fetch")) {
-      const errorMsg =
-        "⚠️ تعذر الاتصال بالخادم نحن نعمل جاهدين لحل هذه المشكله يمكنك استخدام قويم عبر mohamed50mostafa.pythonanywhere/api/ messages";
-      const errorMessageId = conversationManager.addMessage(
-        conversationManager.currentConversationId,
-        errorMsg,
-        "bot"
-      );
-      const errorElement = addMessage(errorMsg, "bot");
-      errorElement.dataset.messageId = errorMessageId;
-      addMessageActions(errorElement, errorMessageId);
+    let errorMsg = "⚠️ حدث خطأ غير متوقع";
+    if (err.message.includes("لم يتم إدخال")) {
+      errorMsg = "🔐 " + err.message;
     } else if (err.message.includes("المصادقة")) {
-      const errorMsg = "🔐 " + err.message;
+      errorMsg = "🔐 " + err.message;
+    } else if (
+      err.name === "TypeError" &&
+      err.message.includes("Failed to fetch")
+    ) {
+      errorMsg = "⚠️ تعذر الاتصال بالخادم. يرجى التحقق من اتصال الإنترنت.";
+    } else {
+      errorMsg = "⚠️ " + err.message;
+    }
+
+    if (currentConversationId) {
       const errorMessageId = conversationManager.addMessage(
-        conversationManager.currentConversationId,
+        currentConversationId,
         errorMsg,
         "bot"
       );
@@ -915,15 +1019,7 @@ async function sendMessage() {
       errorElement.dataset.messageId = errorMessageId;
       addMessageActions(errorElement, errorMessageId);
     } else {
-      const errorMsg = "⚠️ " + err.message;
-      const errorMessageId = conversationManager.addMessage(
-        conversationManager.currentConversationId,
-        errorMsg,
-        "bot"
-      );
-      const errorElement = addMessage(errorMsg, "bot");
-      errorElement.dataset.messageId = errorMessageId;
-      addMessageActions(errorElement, errorMessageId);
+      showNotification(errorMsg, "error");
     }
   } finally {
     waitingBot = false;
@@ -972,7 +1068,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const newChatBtn = document.querySelector(".new-chat-btn");
 
-newChatBtn.addEventListener("click", () => {
+newChatBtn.addEventListener("click", async () => {
   const overlay = document.createElement("div");
   overlay.classList.add("overlay");
   overlay.style.display = "flex";
@@ -1027,18 +1123,20 @@ newChatBtn.addEventListener("click", () => {
     overlay.remove();
   });
 
-  popup.querySelector("#saveChatBtn").addEventListener("click", () => {
+  popup.querySelector("#saveChatBtn").addEventListener("click", async () => {
     const chatName = chatNameInput.value.trim();
     const name =
       chatName || `محادثة ${conversationManager.conversations.length + 1}`;
 
     try {
-      const newId = conversationManager.createConversation(name);
+      showNotification("جاري إنشاء المحادثة على الخادم...", "info");
+
+      const serverChatId = await createServerChat(name);
+
+      const newId = conversationManager.createConversation(name, serverChatId);
 
       loadConversationsList();
-
       conversationManager.loadConversation(newId);
-
       overlay.remove();
 
       setTimeout(() => {
@@ -1047,8 +1145,11 @@ newChatBtn.addEventListener("click", () => {
           sidebarOverlay.style.display = "none";
         }
       }, 500);
+
+      showNotification("تم إنشاء المحادثة بنجاح!", "success");
     } catch (error) {
-      alert(error.message);
+      console.error("Error creating chat:", error);
+      showNotification(`فشل في إنشاء المحادثة: ${error.message}`, "error");
     }
   });
 
@@ -1084,8 +1185,7 @@ searchBtn.addEventListener("click", () => {
       <i class="fas fa-search"></i>
     </div>
     <div class="search-results" id="searchResults">
-      <!-- سيتم ملؤها بالنتائج -->
-    </div>
+      </div>
     <div class="actions">
       <button id="closeSearchBtn">إغلاق</button>
     </div>
@@ -1140,215 +1240,94 @@ function performSearch(query, resultsContainer) {
   const results = conversationManager.searchConversations(query);
 
   if (results.length === 0) {
-    resultsContainer.innerHTML =
-      '<p class="no-results">لا توجد نتائج للبحث</p>';
+    resultsContainer.innerHTML = '<p class="no-results">لا توجد نتائج</p>';
     return;
   }
 
-  results.forEach((conversation) => {
-    const resultItem = document.createElement("div");
-    resultItem.classList.add("search-result-item");
+  results.forEach((conv) => {
+    const convResult = document.createElement("div");
+    convResult.className = "search-conversation-result";
+    convResult.innerHTML = `<strong>${conv.name}</strong>`;
+    resultsContainer.appendChild(convResult);
 
-    const matchingMessages = conversation.messages.filter((msg) =>
-      msg.text.toLowerCase().includes(query.toLowerCase())
-    );
-
-    resultItem.innerHTML = `
-      <div class="result-header">
-        <i class="fas fa-comment"></i>
-        <span class="result-title">${conversation.name}</span>
-        <span class="result-count">(${matchingMessages.length} نتيجة)</span>
-      </div>
-      ${
-        matchingMessages.length > 0
-          ? `<div class="result-preview">${highlightText(
-              matchingMessages[0].text,
-              query
-            )}</div>`
-          : ""
-      }
-    `;
-
-    resultItem.addEventListener("click", () => {
-      conversationManager.currentSearchResults = matchingMessages;
-      conversationManager.currentSearchIndex = 0;
-
-      conversationManager.loadConversation(
-        conversation.id,
-        matchingMessages[0]?.messageId,
-        query
-      );
-
-      if (matchingMessages.length > 1) {
-        showSearchNavigation(conversation.id, matchingMessages, 0, query);
-      }
-
-      document.querySelector(".overlay").remove();
-
-      if (window.innerWidth <= 768) {
-        sidebar.classList.remove("open");
-        sidebarOverlay.style.display = "none";
-      }
+    const messages = conversationManager.searchInConversation(conv.id, query);
+    messages.forEach((msg) => {
+      const msgResult = document.createElement("p");
+      msgResult.className = "search-message-result";
+      msgResult.textContent = `...${msg.text.substring(0, 50)}...`;
+      msgResult.onclick = () => {
+        conversationManager.loadConversation(conv.id, msg.messageId, query);
+        document.querySelector(".overlay").remove();
+      };
+      convResult.appendChild(msgResult);
     });
-
-    resultsContainer.appendChild(resultItem);
   });
-}
-
-function highlightText(text, query) {
-  const regex = new RegExp(`(${query})`, "gi");
-  return text.replace(regex, '<mark class="search-highlight">$1</mark>');
-}
-
-function scrollToMessage(messageId, searchQuery) {
-  const messageElement = document.querySelector(
-    `[data-message-id="${messageId}"]`
-  );
-
-  if (messageElement) {
-    messageElement.scrollIntoView({
-      behavior: "smooth",
-      block: "center",
-    });
-
-    messageElement.classList.add("search-result-message");
-
-    highlightTextInMessage(messageElement, searchQuery);
-
-    setTimeout(() => {
-      messageElement.classList.remove("search-result-message");
-      removeHighlightFromMessage(messageElement);
-    }, 3000);
-  }
 }
 
 function highlightTextInMessage(messageElement, query) {
   const text = messageElement.textContent;
-  const regex = new RegExp(`(${query})`, "gi");
-  const highlightedText = text.replace(
-    regex,
-    '<mark class="message-highlight">$1</mark>'
-  );
+  const lowerText = text.toLowerCase();
+  const lowerQuery = query.toLowerCase();
 
-  messageElement.dataset.originalText = text;
+  const parts = [];
+  let lastIndex = 0;
+  let matchIndex;
 
-  messageElement.innerHTML = highlightedText;
+  while ((matchIndex = lowerText.indexOf(lowerQuery, lastIndex)) !== -1) {
+    if (matchIndex > lastIndex) {
+      parts.push(
+        document.createTextNode(text.substring(lastIndex, matchIndex))
+      );
+    }
 
-  const messageId = messageElement.dataset.messageId;
-  addMessageActions(messageElement, messageId);
+    const matchSpan = document.createElement("span");
+    matchSpan.className = "highlight";
+    matchSpan.textContent = text.substring(
+      matchIndex,
+      matchIndex + query.length
+    );
+    parts.push(matchSpan);
+
+    lastIndex = matchIndex + query.length;
+  }
+
+  if (lastIndex < text.length) {
+    parts.push(document.createTextNode(text.substring(lastIndex)));
+  }
+
+  messageElement.innerHTML = "";
+  parts.forEach((part) => messageElement.appendChild(part));
 }
 
 function removeHighlightFromMessage(messageElement) {
-  const originalText = messageElement.dataset.originalText;
-  if (originalText) {
-    messageElement.textContent = originalText;
-
-    const messageId = messageElement.dataset.messageId;
-    addMessageActions(messageElement, messageId);
-  }
+  messageElement.textContent = messageElement.textContent;
 }
-
-function showSearchNavigation(
-  conversationId,
-  matchingMessages,
-  currentIndex = 0,
-  searchQuery = ""
-) {
-  const existingNav = document.querySelector(".search-navigation");
-  if (existingNav) {
-    existingNav.remove();
-  }
-
-  if (matchingMessages.length <= 1) return;
-
-  const nav = document.createElement("div");
-  nav.className = "search-navigation";
-  nav.innerHTML = `
-    <div class="search-nav-content">
-      <span class="search-nav-info">${currentIndex + 1} من ${
-    matchingMessages.length
-  }</span>
-      <button class="search-nav-btn prev-btn" ${
-        currentIndex === 0 ? "disabled" : ""
-      }>
-        <i class="fas fa-chevron-up"></i>
-      </button>
-      <button class="search-nav-btn next-btn" ${
-        currentIndex === matchingMessages.length - 1 ? "disabled" : ""
-      }>
-        <i class="fas fa-chevron-down"></i>
-      </button>
-      <button class="search-nav-btn close-btn">
-        <i class="fas fa-times"></i>
-      </button>
-    </div>
-  `;
-
-  document.querySelector(".chat-area").appendChild(nav);
-
-  nav.querySelector(".prev-btn").addEventListener("click", () => {
-    if (currentIndex > 0) {
-      const newIndex = currentIndex - 1;
-      scrollToMessage(matchingMessages[newIndex].messageId, searchQuery);
-      showSearchNavigation(
-        conversationId,
-        matchingMessages,
-        newIndex,
-        searchQuery
-      );
-    }
-  });
-
-  nav.querySelector(".next-btn").addEventListener("click", () => {
-    if (currentIndex < matchingMessages.length - 1) {
-      const newIndex = currentIndex + 1;
-      scrollToMessage(matchingMessages[newIndex].messageId, searchQuery);
-      showSearchNavigation(
-        conversationId,
-        matchingMessages,
-        newIndex,
-        searchQuery
-      );
-    }
-  });
-
-  nav.querySelector(".close-btn").addEventListener("click", () => {
-    nav.remove();
-    document.querySelectorAll(".search-result-message").forEach((msg) => {
-      msg.classList.remove("search-result-message");
-      removeHighlightFromMessage(msg);
-    });
-  });
-}
-
-window.addEventListener("load", async () => {
-  try {
-    const response = await fetch(
-      "https://mohamed50mostafa.pythonanywhere.com/api/messages",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": API_CONFIG.contentType,
-          Authorization: `Token ${API_CONFIG.token}`,
-          "Web-Antennisrate": "Token",
-          Name: API_CONFIG.name,
-        },
-        body: JSON.stringify({ message: "connection_test" }),
-      }
-    );
-
-    if (response.ok) {
-      console.log("✅ API connection successful");
-    } else {
-      console.warn("❌ API connection failed:", response.status);
-    }
-  } catch (error) {
-    console.error("❌ API test error:", error);
-  }
-});
 
 const style = document.createElement("style");
 style.textContent = `
+  .highlight {
+    background-color: #ffeb3b;
+    color: #000;
+    padding: 2px 4px;
+    border-radius: 3px;
+  }
+  
+  .search-result-message {
+    border: 2px solid #ffeb3b !important;
+    animation: pulse 1s ease-in-out;
+  }
+  
+  @keyframes pulse {
+    0% { border-color: #ffeb3b; }
+    50% { border-color: #ff9800; }
+    100% { border-color: #ffeb3b; }
+  }
+  
+  .message-copied {
+    background-color: rgba(43, 168, 217, 0.3) !important;
+    transition: background-color 0.5s ease;
+  }
+  
   @keyframes slideIn {
     from { transform: translateX(100%); opacity: 0; }
     to { transform: translateX(0); opacity: 1; }
@@ -1358,315 +1337,9 @@ style.textContent = `
     from { transform: translateX(0); opacity: 1; }
     to { transform: translateX(100%); opacity: 0; }
   }
+  
+  .custom-notification {
+    font-family: inherit;
+  }
 `;
 document.head.appendChild(style);
-
-function updateUserProfile() {
-  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-
-  if (isLoggedIn) {
-    const userData = JSON.parse(localStorage.getItem("currentUser") || "{}");
-    const profileName = document.querySelector(".profile-name");
-    const profileImage = document.querySelector(".profile img");
-
-    if (profileName && userData.fullName) {
-      profileName.textContent = userData.fullName;
-    }
-
-    if (profileImage) {
-      if (userData.profilePicture) {
-        profileImage.src = userData.profilePicture;
-
-        profileImage.onerror = function () {
-          console.log("فشل تحميل صورة البروفايل، استخدام الصورة الافتراضية");
-          this.src = createDefaultAvatar(userData.fullName || "U");
-          this.onerror = null;
-        };
-      } else {
-        profileImage.src = createDefaultAvatar(userData.fullName || "U");
-      }
-    }
-
-    const loginButton = document.querySelector('.icon[data-action="login"]');
-    const logoutButton = document.querySelector('.icon[data-action="logout"]');
-
-    if (loginButton) loginButton.style.display = "none";
-    if (logoutButton) logoutButton.style.display = "flex";
-  }
-}
-
-function createDefaultAvatar(name) {
-  try {
-    const canvas = document.createElement("canvas");
-    canvas.width = 200;
-    canvas.height = 200;
-    const ctx = canvas.getContext("2d");
-
-    const colors = ["#2ba8d9", "#d15425", "#ec6f50", "#2a93b0", "#c15516"];
-    const bgColor = colors[Math.floor(Math.random() * colors.length)];
-
-    ctx.fillStyle = bgColor;
-    ctx.beginPath();
-    ctx.arc(100, 100, 90, 0, 2 * Math.PI);
-    ctx.fill();
-
-    ctx.fillStyle = "#FFFFFF";
-    ctx.font = 'bold 70px "Tajawal", Arial, sans-serif';
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-
-    const initials = name
-      .split(" ")
-      .map((word) => word[0])
-      .join("")
-      .toUpperCase()
-      .substring(0, 2);
-
-    ctx.fillText(initials, 100, 100);
-
-    return canvas.toDataURL();
-  } catch (error) {
-    console.error("خطأ في إنشاء الصورة الافتراضية:", error);
-    return "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9IjkwIiBmaWxsPSIjMmJhOGQ5Ii8+PHRleHQgeD0iMTAwIiB5PSIxMjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSI4MCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPs6/PC90ZXh0Pjwvc3ZnPg==";
-  }
-}
-
-function logout() {
-  localStorage.setItem("isLoggedIn", "false");
-  localStorage.removeItem("currentUser");
-  window.location.href = "../account/login/login.html";
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-  const currentPath = window.location.pathname;
-
-  const allowedPages = [
-    "/account/login/login.html",
-    "/account/create-account/create-account.html",
-    "/account/login/",
-    "/account/create-account/",
-  ];
-
-  const isAllowedPage = allowedPages.some((page) => currentPath.includes(page));
-
-  if (!isLoggedIn && !isAllowedPage) {
-    window.location.href = "../account/login/login.html";
-    return;
-  }
-
-  if (isLoggedIn) {
-    updateUserProfile();
-  }
-
-  const logoutBtn = document.querySelector('.icon[data-action="logout"]');
-  if (logoutBtn) {
-    logoutBtn.addEventListener("click", logout);
-  }
-
-  window.addEventListener("load", function () {
-    if (isLoggedIn) {
-      setTimeout(updateUserProfile, 100);
-    }
-  });
-});
-
-window.addEventListener("storage", function (e) {
-  if (e.key === "currentUser" || e.key === "isLoggedIn") {
-    updateUserProfile();
-  }
-});
-function shareMessage(messageElement) {
-  const text = messageElement.textContent || messageElement.innerText;
-
-  const overlay = document.createElement("div");
-  overlay.classList.add("overlay");
-  overlay.style.display = "flex";
-
-  const popup = document.createElement("div");
-  popup.classList.add("popup", "share-popup");
-  popup.style.width = "400px";
-
-  popup.innerHTML = `
-    <span class="close-modal">&times;</span>
-    <h3><i class="fas fa-share-alt"></i> مشاركة الرسالة</h3>
-    <div class="share-content">
-      <div class="message-preview">
-        <p>${text}</p>
-      </div>
-      <div class="share-options">
-        <h4>اختر طريقة المشاركة:</h4>
-        <div class="share-buttons">
-          <button class="share-option-btn" data-method="copy">
-            <i class="far fa-copy"></i>
-            <span>نسخ النص</span>
-          </button>
-          <button class="share-option-btn" data-method="twitter">
-            <i class="fab fa-twitter"></i>
-            <span>تويتر</span>
-          </button>
-          <button class="share-option-btn" data-method="whatsapp">
-            <i class="fab fa-whatsapp"></i>
-            <span>واتساب</span>
-          </button>
-          <button class="share-option-btn" data-method="telegram">
-            <i class="fab fa-telegram"></i>
-            <span>تيليجرام</span>
-          </button>
-          <button class="share-option-btn" data-method="facebook">
-            <i class="fab fa-facebook"></i>
-            <span>فيسبوك</span>
-          </button>
-          <button class="share-option-btn" data-method="download">
-            <i class="fas fa-download"></i>
-            <span>تحميل كملف</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  `;
-
-  overlay.appendChild(popup);
-  document.body.appendChild(overlay);
-
-  setTimeout(() => {
-    popup.querySelector(".share-option-btn").focus();
-  }, 100);
-
-  popup.querySelector(".close-modal").addEventListener("click", () => {
-    overlay.remove();
-  });
-
-  const shareButtons = popup.querySelectorAll(".share-option-btn");
-  shareButtons.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      const method = e.currentTarget.dataset.method;
-      handleShareMethod(method, text, messageElement);
-      overlay.remove();
-    });
-  });
-
-  overlay.addEventListener("click", (e) => {
-    if (e.target === overlay) {
-      overlay.remove();
-    }
-  });
-
-  document.addEventListener("keydown", function closeOnEscape(e) {
-    if (e.key === "Escape") {
-      overlay.remove();
-      document.removeEventListener("keydown", closeOnEscape);
-    }
-  });
-}
-
-function handleShareMethod(method, text, messageElement) {
-  const shareUrl = encodeURIComponent(window.location.href);
-  const shareText = encodeURIComponent(text);
-
-  switch (method) {
-    case "copy":
-      navigator.clipboard
-        .writeText(text)
-        .then(() => {
-          showCopyNotification("تم نسخ الرسالة بنجاح");
-          messageElement.classList.add("message-shared");
-          setTimeout(() => {
-            messageElement.classList.remove("message-shared");
-          }, 1000);
-        })
-        .catch((err) => {
-          console.error("فشل في النسخ: ", err);
-          showCopyNotification("فشل في نسخ الرسالة");
-        });
-      break;
-
-    case "twitter":
-      window.open(
-        `https://twitter.com/intent/tweet?text=${shareText}`,
-        "_blank"
-      );
-      break;
-
-    case "whatsapp":
-      window.open(`https://wa.me/?text=${shareText}`, "_blank");
-      break;
-
-    case "telegram":
-      window.open(
-        `https://t.me/share/url?url=${shareUrl}&text=${shareText}`,
-        "_blank"
-      );
-      break;
-
-    case "facebook":
-      window.open(
-        `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}&quote=${shareText}`,
-        "_blank"
-      );
-      break;
-
-    case "download":
-      downloadAsFile(text);
-      break;
-  }
-}
-
-function downloadAsFile(text) {
-  const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `رسالة-${new Date().toISOString().split("T")[0]}.txt`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-
-  showCopyNotification("تم تحميل الرسالة بنجاح");
-}
-function addMessageActions(messageElement, messageId = null) {
-  const existingActions = messageElement.querySelector(".message-actions");
-  if (existingActions) {
-    existingActions.remove();
-  }
-
-  const messageActions = document.createElement("div");
-  messageActions.className = "message-actions";
-
-  const copyBtn = document.createElement("button");
-  copyBtn.className = "message-action-btn copy-btn";
-  copyBtn.innerHTML = '<i class="far fa-copy"></i>';
-  copyBtn.title = "نسخ الرسالة";
-  copyBtn.onclick = (e) => {
-    e.stopPropagation();
-    copyMessageText(messageElement);
-  };
-
-  const shareBtn = document.createElement("button");
-  shareBtn.className = "message-action-btn share-btn";
-  shareBtn.innerHTML = '<i class="fas fa-share-alt"></i>';
-  shareBtn.title = "مشاركة الرسالة";
-  shareBtn.onclick = (e) => {
-    e.stopPropagation();
-    shareMessage(messageElement);
-  };
-
-  messageActions.appendChild(copyBtn);
-  messageActions.appendChild(shareBtn);
-
-  if (messageElement.classList.contains("user")) {
-    const editBtn = document.createElement("button");
-    editBtn.className = "message-action-btn edit-btn";
-    editBtn.innerHTML = '<i class="far fa-edit"></i>';
-    editBtn.title = "تعديل الرسالة";
-    editBtn.onclick = (e) => {
-      e.stopPropagation();
-      editMessage(messageElement);
-    };
-
-    messageActions.appendChild(editBtn);
-  }
-
-  messageElement.appendChild(messageActions);
-}

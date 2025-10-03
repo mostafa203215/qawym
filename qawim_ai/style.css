@@ -153,6 +153,7 @@ body.loading {
   margin-block-end: 0;
 }
 .icon {
+  text-decoration: none;
   position: relative;
   display: flex;
   align-items: center;

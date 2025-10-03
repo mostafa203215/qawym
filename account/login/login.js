@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .forEach((el) => el.classList.remove("error"));
   }
 
-  // 🔐 تسجيل الدخول باستخدام API
+  // 🔐 تسجيل الدخول باستخدام API والحصول على بيانات المستخدم
   async function loginWithAPI(email, password, rememberMe) {
     try {
       const response = await fetch(
@@ -115,7 +115,13 @@ document.addEventListener("DOMContentLoaded", function () {
         );
       }
 
-      // ✅ نجاح
+      // ✅ نجاح تسجيل الدخول
+      const authToken = data.key;
+
+      // الحصول على بيانات المستخدم باستخدام التوكن
+      const userData = await getUserData(authToken);
+
+      // ✅ حفظ البيانات
       if (rememberMe) {
         localStorage.setItem("userEmail", email);
         localStorage.setItem("rememberMe", "true");
@@ -124,9 +130,10 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.removeItem("rememberMe");
       }
 
-      // تخزين الـ Token أو بيانات المستخدم
-      localStorage.setItem("authToken", data.key);
+      // تخزين التوكن وبيانات المستخدم
+      localStorage.setItem("authToken", authToken);
       localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("currentUser", JSON.stringify(userData));
 
       showMessage("✅ تم تسجيل الدخول بنجاح! جاري التوجيه...", "success");
 
@@ -136,6 +143,36 @@ document.addEventListener("DOMContentLoaded", function () {
     } catch (error) {
       loadingOverlay.style.display = "none";
       showMessage(error.message, "error");
+    }
+  }
+
+  // 📋 الحصول على بيانات المستخدم باستخدام التوكن
+  async function getUserData(token) {
+    try {
+      const response = await fetch(
+        "https://mohamed50mostafa.pythonanywhere.com/dj-rest-auth/user/",
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Token ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("فشل في الحصول على بيانات المستخدم");
+      }
+
+      const userData = await response.json();
+      return userData;
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      // إرجاع بيانات افتراضية في حالة الفشل
+      return {
+        email: emailInput.value.trim(),
+        username: emailInput.value.trim().split("@")[0],
+      };
     }
   }
 

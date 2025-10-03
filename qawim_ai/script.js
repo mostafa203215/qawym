@@ -1,47 +1,91 @@
-const sidebar = document.querySelector(".sidebar");
-const hamburger = document.querySelector(".hamburger");
-const mobileHamburger = document.querySelector(".mobile-hamburger");
+// التحقق من حالة تسجيل الدخول
+function checkLoginStatus() {
+  const authToken = localStorage.getItem("authToken");
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
 
-const sidebarOverlay = document.createElement("div");
-sidebarOverlay.classList.add("sidebar-overlay");
-document.querySelector(".container").appendChild(sidebarOverlay);
-
-hamburger.addEventListener("click", (e) => {
-  e.stopPropagation();
-  sidebar.classList.toggle("open");
-  sidebarOverlay.style.display =
-    sidebar.classList.contains("open") && window.innerWidth <= 768
-      ? "block"
-      : "none";
-});
-mobileHamburger.addEventListener("click", () => {
-  sidebar.classList.add("open");
-  sidebarOverlay.style.display = "block";
-});
-
-sidebarOverlay.addEventListener("click", () => {
-  sidebar.classList.remove("open");
-  sidebarOverlay.style.display = "none";
-});
-
-document.addEventListener("click", (e) => {
-  const isMobile = window.innerWidth <= 768;
+  // إذا لم يكن المستخدم مسجلاً، قم بتوجيهه إلى صفحة إنشاء الحساب
   if (
-    sidebar.classList.contains("open") &&
-    !sidebar.contains(e.target) &&
-    !mobileHamburger.contains(e.target) &&
-    isMobile
+    !authToken ||
+    authToken === "YOUR_AUTH_TOKEN_HERE" ||
+    isLoggedIn !== "true"
   ) {
-    sidebar.classList.remove("open");
-    sidebarOverlay.style.display = "none";
+    console.log("المستخدم غير مسجل، جاري التوجيه إلى صفحة إنشاء الحساب...");
+    window.location.href = "../account/create-account/create-account.html";
+    return false;
   }
-});
 
-window.addEventListener("resize", () => {
-  if (window.innerWidth > 768) {
+  return true;
+}
+
+// تنفيذ التحقق عند تحميل الصفحة
+document.addEventListener("DOMContentLoaded", function () {
+  // التحقق من حالة تسجيل الدخول أولاً
+  if (!checkLoginStatus()) {
+    return; // لا تستمر في تنفيذ باقي الكود إذا لم يكن المستخدم مسجلاً
+  }
+
+  // باقي كود التهيئة للصفحة الرئيسية
+  const sidebar = document.querySelector(".sidebar");
+  const hamburger = document.querySelector(".hamburger");
+  const mobileHamburger = document.querySelector(".mobile-hamburger");
+
+  const sidebarOverlay = document.createElement("div");
+  sidebarOverlay.classList.add("sidebar-overlay");
+  document.querySelector(".container").appendChild(sidebarOverlay);
+
+  hamburger.addEventListener("click", (e) => {
+    e.stopPropagation();
+    sidebar.classList.toggle("open");
+    sidebarOverlay.style.display =
+      sidebar.classList.contains("open") && window.innerWidth <= 768
+        ? "block"
+        : "none";
+  });
+
+  mobileHamburger.addEventListener("click", () => {
+    sidebar.classList.add("open");
+    sidebarOverlay.style.display = "block";
+  });
+
+  sidebarOverlay.addEventListener("click", () => {
     sidebar.classList.remove("open");
     sidebarOverlay.style.display = "none";
-  }
+  });
+
+  document.addEventListener("click", (e) => {
+    const isMobile = window.innerWidth <= 768;
+    if (
+      sidebar.classList.contains("open") &&
+      !sidebar.contains(e.target) &&
+      !mobileHamburger.contains(e.target) &&
+      isMobile
+    ) {
+      sidebar.classList.remove("open");
+      sidebarOverlay.style.display = "none";
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) {
+      sidebar.classList.remove("open");
+      sidebarOverlay.style.display = "none";
+    }
+  });
+
+  // تحميل المحادثات وتهيئة الصفحة
+  loadConversationsList();
+  conversationManager.displayWelcomeMessage();
+
+  // إخفاء التحميل بعد تحميل الصفحة
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      const preloader = document.querySelector(".preloader");
+      if (preloader) {
+        preloader.classList.add("hidden");
+      }
+      document.body.classList.remove("loading");
+    }, 800);
+  });
 });
 
 class ConversationManager {
@@ -1048,22 +1092,6 @@ userInput.addEventListener("keypress", (e) => {
     e.preventDefault();
     sendMessage();
   }
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  document.body.classList.add("loading");
-  const preloader = document.querySelector(".preloader");
-
-  loadConversationsList();
-
-  conversationManager.displayWelcomeMessage();
-
-  window.addEventListener("load", () => {
-    setTimeout(() => {
-      preloader.classList.add("hidden");
-      document.body.classList.remove("loading");
-    }, 800);
-  });
 });
 
 const newChatBtn = document.querySelector(".new-chat-btn");

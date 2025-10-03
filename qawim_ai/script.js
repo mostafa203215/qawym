@@ -17,12 +17,40 @@ function checkLoginStatus() {
   return true;
 }
 
+// تحديث الواجهة ببيانات المستخدم
+function updateUserInterface() {
+  const userData = localStorage.getItem("currentUser");
+
+  if (userData) {
+    try {
+      const user = JSON.parse(userData);
+      const userName =
+        user.username || user.first_name || user.email || "مستخدم";
+
+      // تحديث الاسم في كل الأماكن
+      const userNameElements = document.querySelectorAll(
+        ".user-name, .username, .profile-name"
+      );
+      userNameElements.forEach((element) => {
+        element.textContent = userName;
+      });
+
+      console.log("تم تحديث الاسم إلى:", userName);
+    } catch (error) {
+      console.error("Error parsing user data:", error);
+    }
+  }
+}
+
 // تنفيذ التحقق عند تحميل الصفحة
 document.addEventListener("DOMContentLoaded", function () {
   // التحقق من حالة تسجيل الدخول أولاً
   if (!checkLoginStatus()) {
     return; // لا تستمر في تنفيذ باقي الكود إذا لم يكن المستخدم مسجلاً
   }
+
+  // تحديث واجهة المستخدم بالبيانات المحفوظة
+  updateUserInterface();
 
   // باقي كود التهيئة للصفحة الرئيسية
   const sidebar = document.querySelector(".sidebar");
@@ -1334,14 +1362,14 @@ function removeHighlightFromMessage(messageElement) {
 const style = document.createElement("style");
 style.textContent = `
   .highlight {
-    background-color: #ffeb3b;
+    background-color: #29a1d1;
     color: #000;
     padding: 2px 4px;
     border-radius: 3px;
   }
   
   .search-result-message {
-    border: 2px solid #ffeb3b !important;
+    border: 2px solid #29a1d1 !important;
     animation: pulse 1s ease-in-out;
   }
   
